@@ -7,12 +7,12 @@ const RESOURCES = {
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "b14fcf3ee94e3ace300b192e9e7c8c5d",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
-"assets/NOTICES": "358632508581d5f5802254239aed7686",
+"assets/NOTICES": "dc00aa362cba36310a65781b8f5efe46",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"main.dart.js": "1ac27b571ebdad42d263a8efe4cc8bc0",
+"main.dart.js": "e770bc7b8371dcfd6d274f4aed831674",
 "manifest.json": "aca0242ba03c4d6fd20480fe8bd022c7",
-"index.html": "8affe384760c9034d5e3c782b1888626",
-"/": "8affe384760c9034d5e3c782b1888626",
+"index.html": "db460bdd5737f4166e6185bc20fcdadc",
+"/": "db460bdd5737f4166e6185bc20fcdadc",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1"
 };

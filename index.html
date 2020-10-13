@@ -24,10 +24,34 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=1435446472');
+        navigator.serviceWorker.register('flutter_service_worker.js?v=4230372743');
       });
     }
   </script>
-  <script src="main.dart.js?v=1435446472" type="application/javascript"></script>
+  <script src="main.dart.js?v=4230372743" type="application/javascript"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
+
+  <script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyC36UGcGGkJR5RXihM8KFXLlnwLONs8DAo",
+    authDomain: "dogchat-freddiefujiwara-com.firebaseapp.com",
+    databaseURL: "https://dogchat-freddiefujiwara-com.firebaseio.com",
+    projectId: "dogchat-freddiefujiwara-com",
+    storageBucket: "dogchat-freddiefujiwara-com.appspot.com",
+    messagingSenderId: "513169717999",
+    appId: "1:513169717999:web:b39ddeb76d9a754cca391a",
+    measurementId: "G-NMSFJ93Z6B"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
 </body>
 </html>
