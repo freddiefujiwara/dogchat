@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "513169717999",
+    "firebase_url": "https://dogchat-freddiefujiwara-com.firebaseio.com",
+    "project_id": "dogchat-freddiefujiwara-com",
+    "storage_bucket": "dogchat-freddiefujiwara-com.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513169717999:android:581f56c1fdb29041ca391a",
+        "android_client_info": {
+          "package_name": "com.freddiefujiwara.dogchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513169717999-ohdb0r3frqheiof90apcin5f059edr1s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmnS_JsEZGDqGe3tqilYbStUDM4eMu65Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "513169717999-ohdb0r3frqheiof90apcin5f059edr1s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
