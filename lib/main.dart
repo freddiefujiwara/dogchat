@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 // Import the firebase_core plugin
 
 void main() async {
+
+WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
   runApp(Login());
 }
