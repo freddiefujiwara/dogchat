@@ -1,5 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -33,14 +33,13 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    print(this.user.displayName);
     return Scaffold(
         body: Center(
             child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(user.displayName),
+        Text(this.user != null ? this.user.displayName : "guest"),
         FlatButton(
             child: Text('SignOut'), onPressed: () => _handleSignOut(context))
       ],
