@@ -32,6 +32,9 @@ dependencies:
   firebase_analytics:
   firebase_auth:
   google_sign_in:
+  cloud_firestore:
+  photo_view:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

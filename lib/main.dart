@@ -16,17 +16,17 @@ void main() {
   runApp(
     MaterialApp(
       title: 'Google Sign In',
-      home: SignInDemo(),
+      home: Home(),
     ),
   );
 }
 
-class SignInDemo extends StatefulWidget {
+class Home extends StatefulWidget {
   @override
-  State createState() => SignInDemoState();
+  State createState() => HomeState();
 }
 
-class SignInDemoState extends State<SignInDemo> {
+class HomeState extends State<Home> {
   GoogleSignInAccount _currentUser;
   String _contactText;
 
