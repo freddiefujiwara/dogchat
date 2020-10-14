@@ -16,6 +16,12 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  runApp(
+    MaterialApp(
+      title: 'Google Sign In',
+      home: Home(),
+    ),
+  );
 }
 
 class Home extends StatefulWidget {
