@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert' show json;
 
+import 'package:firebase_core/firebase_core.dart';
 import "package:http/http.dart" as http;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -12,13 +13,9 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
   ],
 );
 
-void main() {
-  runApp(
-    MaterialApp(
-      title: 'Google Sign In',
-      home: Home(),
-    ),
-  );
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 }
 
 class Home extends StatefulWidget {
