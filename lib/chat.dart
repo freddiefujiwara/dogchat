@@ -1,263 +1,191 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dogchat/main.dart';
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:ui';
 
-class Chat extends StatefulWidget {
-  final SharedPreferences prefs;
-  final String chatId;
-  final String title;
-  Chat({this.prefs, this.chatId, this.title});
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:dogchat/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+final _firestore = FirebaseFirestore.instance;
+User loginUser;
+
+class ChatScreen extends StatefulWidget {
+  static const String id = "Chat_screen";
   @override
-  ChatState createState() {
-    return new ChatState();
-  }
+  _ChatScreenState createState() => _ChatScreenState();
 }
 
-class ChatState extends State<Chat> {
-  final db = FirebaseFirestore.instance;
-  CollectionReference chatReference;
-  final TextEditingController _textController = new TextEditingController();
-  bool _isWritten = false;
+class _ChatScreenState extends State<ChatScreen> {
+  final messageController = TextEditingController();
+  String message;
+  final _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
+    getData();
+
     super.initState();
-    chatReference =
-        db.collection("chats").doc(widget.chatId).collection('messages');
   }
 
-  List<Widget> generateSenderLayout(DocumentSnapshot documentSnapshot) {
-    return <Widget>[
-      new Expanded(
-        child: new Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            new Text(documentSnapshot.data()['sender_name'],
-                style: new TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold)),
-            new Container(
-              margin: const EdgeInsets.only(top: 5.0),
-              child: documentSnapshot.data()['image_url'] != ''
-                  ? InkWell(
-                      child: new Container(
-                        child: Image.network(
-                          documentSnapshot.data()['image_url'],
-                          fit: BoxFit.fitWidth,
-                        ),
-                        height: 150,
-                        width: 150.0,
-                        color: Color.fromRGBO(0, 0, 0, 0.2),
-                        padding: EdgeInsets.all(5),
-                      ),
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Home(),
-                          ),
-                        );
-                      },
-                    )
-                  : new Text(documentSnapshot.data()['text']),
-            ),
-          ],
-        ),
-      ),
-      new Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: <Widget>[
-          new Container(
-              margin: const EdgeInsets.only(left: 8.0),
-              child: new CircleAvatar(
-                backgroundImage:
-                    new NetworkImage(documentSnapshot.data()['profile_photo']),
-              )),
-        ],
-      ),
-    ];
-  }
-
-  List<Widget> generateReceiverLayout(DocumentSnapshot documentSnapshot) {
-    return <Widget>[
-      new Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          new Container(
-              margin: const EdgeInsets.only(right: 8.0),
-              child: new CircleAvatar(
-                backgroundImage:
-                    new NetworkImage(documentSnapshot['profile_photo']),
-              )),
-        ],
-      ),
-      new Expanded(
-        child: new Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            new Text(documentSnapshot['sender_name'],
-                style: new TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold)),
-            new Container(
-              margin: const EdgeInsets.only(top: 5.0),
-              child: documentSnapshot['image_url'] != ''
-                  ? InkWell(
-                      child: new Container(
-                        child: Image.network(
-                          documentSnapshot['image_url'],
-                          fit: BoxFit.fitWidth,
-                        ),
-                        height: 150,
-                        width: 150.0,
-                        color: Color.fromRGBO(0, 0, 0, 0.2),
-                        padding: EdgeInsets.all(5),
-                      ),
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Home(),
-                          ),
-                        );
-                      },
-                    )
-                  : new Text(documentSnapshot['text']),
-            ),
-          ],
-        ),
-      ),
-    ];
-  }
-
-  generateMessages(AsyncSnapshot<QuerySnapshot> snapshot) {
-    return snapshot.data.docs
-        .map<Widget>((doc) => Container(
-              margin: const EdgeInsets.symmetric(vertical: 10.0),
-              child: new Row(
-                children:
-                    doc.data()['sender_id'] != widget.prefs.getString('uid')
-                        ? generateReceiverLayout(doc)
-                        : generateSenderLayout(doc),
-              ),
-            ))
-        .toList();
+  void getData() {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        loginUser = user;
+        print(loginUser.email);
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        leading: null,
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () {
+                _auth.signOut();
+                Navigator.pop(context);
+              }),
+        ],
+        title: Text('⚡️Chat'),
+        backgroundColor: Colors.lightBlueAccent,
       ),
-      body: Container(
-        padding: EdgeInsets.all(5),
-        child: new Column(
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            StreamBuilder<QuerySnapshot>(
-              stream:
-                  chatReference.orderBy('time', descending: true).snapshots(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (!snapshot.hasData) return new Text("No Chat");
-                return Expanded(
-                  child: new ListView(
-                    reverse: true,
-                    children: generateMessages(snapshot),
+            Messagestream(),
+            Container(
+              decoration: kMessageContainerDecoration,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: TextField(
+                      controller: messageController,
+                      onChanged: (value) {
+                        message = value;
+                      },
+                      decoration: kMessageTextFieldDecoration,
+                    ),
                   ),
-                );
-              },
+                  FlatButton(
+                    onPressed: () {
+                      _firestore.collection('messages').add({
+                        'text': message,
+                        'sender': loginUser.email,
+                        'timestamp': FieldValue.serverTimestamp(),
+                      });
+                      messageController.clear();
+                    },
+                    child: Text(
+                      'Send',
+                      style: kSendButtonTextStyle,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            new Divider(height: 1.0),
-            new Container(
-              decoration: new BoxDecoration(color: Theme.of(context).cardColor),
-              child: _buildTextComposer(),
-            ),
-            new Builder(builder: (BuildContext context) {
-              return new Container(width: 0.0, height: 0.0);
-            })
           ],
         ),
       ),
     );
   }
+}
 
-  IconButton getDefaultSendButton() {
-    return new IconButton(
-      icon: new Icon(Icons.send),
-      onPressed: _isWritten ? () => _sendText(_textController.text) : null,
+class MessageBubble extends StatelessWidget {
+  MessageBubble({this.Sender, this.TextMsg, this.isMe});
+  final TextMsg;
+  final Sender;
+  bool isMe;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          Text(
+            "$Sender",
+            style: TextStyle(color: Colors.black87, fontSize: 12),
+          ),
+          Material(
+            borderRadius: isMe ? Kborderradiusright : Kborderradiusleft,
+            elevation: 10,
+            color: isMe ? Colors.blueAccent : Colors.greenAccent,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: Text(
+                '$TextMsg',
+                style: TextStyle(fontSize: 15),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
+}
 
-  Widget _buildTextComposer() {
-    return new IconTheme(
-        data: new IconThemeData(
-          color: _isWritten
-              ? Theme.of(context).accentColor
-              : Theme.of(context).disabledColor,
-        ),
-        child: new Container(
-          margin: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: new Row(
-            children: <Widget>[
-              new Container(
-                margin: new EdgeInsets.symmetric(horizontal: 4.0),
-                child: new IconButton(
-                    icon: new Icon(
-                      Icons.photo_camera,
-                      color: Theme.of(context).accentColor,
-                    ),
-                    onPressed: () async {
-                      _sendImage(messageText: null, imageUrl: null);
-                    }),
-              ),
-              new Flexible(
-                child: new TextField(
-                  controller: _textController,
-                  onChanged: (String messageText) {
-                    setState(() {
-                      _isWritten = messageText.length > 0;
-                    });
-                  },
-                  onSubmitted: _sendText,
-                  decoration:
-                      new InputDecoration.collapsed(hintText: "Send a message"),
-                ),
-              ),
-              new Container(
-                margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: getDefaultSendButton(),
-              ),
-            ],
-          ),
-        ));
-  }
+class Messagestream extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+        stream: _firestore
+            .collection('messages')
+            .orderBy('timestamp', descending: false)
+            .snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Something went wrong');
+          }
 
-  Future<Null> _sendText(String text) async {
-    _textController.clear();
-    chatReference.add({
-      'text': text,
-      'sender_id': widget.prefs.getString('uid'),
-      'sender_name': widget.prefs.getString('name'),
-      'profile_photo': widget.prefs.getString('profile_photo'),
-      'image_url': '',
-      'time': FieldValue.serverTimestamp(),
-    }).then((documentReference) {
-      setState(() {
-        _isWritten = false;
-      });
-    }).catchError((e) {});
-  }
-
-  void _sendImage({String messageText, String imageUrl}) {
-    chatReference.add({
-      'text': messageText,
-      'sender_id': widget.prefs.getString('uid'),
-      'sender_name': widget.prefs.getString('name'),
-      'profile_photo': widget.prefs.getString('profile_photo'),
-      'image_url': imageUrl,
-      'time': FieldValue.serverTimestamp(),
-    });
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("Loading");
+          }
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.blueAccent,
+              ),
+            );
+          } else {
+            final messages = snapshot.data.docs;
+            List<MessageBubble> messagewidgets = [];
+            for (var message in messages) {
+              final messageText = message.data()['text'];
+              final messageSender = message.data()['sender'];
+              final currentuser = loginUser.email;
+              bool val;
+              if (currentuser != messageSender)
+                val = false;
+              else
+                val = true;
+              final messageBubbler = MessageBubble(
+                Sender: messageSender,
+                TextMsg: messageText,
+                isMe: val,
+              );
+              messagewidgets.add(messageBubbler);
+            }
+            return Expanded(
+                child: ListView(
+              reverse: true,
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              children: [
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: messagewidgets),
+              ],
+            ));
+          }
+        });
   }
 }
