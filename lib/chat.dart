@@ -9,13 +9,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 final _firestore = FirebaseFirestore.instance;
 User loginUser;
 
-class ChatScreen extends StatefulWidget {
+class Chat extends StatefulWidget {
   static const String id = "Chat_screen";
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _ChatState createState() => _ChatState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatState extends State<Chat> {
   final messageController = TextEditingController();
   String message;
   final _auth = FirebaseAuth.instance;
