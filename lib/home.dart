@@ -8,8 +8,6 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-  String _contactText;
-
   @override
   void initState() {
     super.initState();
@@ -17,6 +15,7 @@ class HomeState extends State<Home> {
       setState(() {
         loginUser = account;
       });
+      Navigator.of(context).pushNamed('/chat');
     });
     googleSignIn.signInSilently();
   }
@@ -29,46 +28,17 @@ class HomeState extends State<Home> {
     }
   }
 
-  Future<void> _handleSignOut() => googleSignIn.disconnect();
-
   Widget _buildBody() {
-    if (loginUser != null) {
-      Navigator.of(context).pushNamed('/chat');
-      /*
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          ListTile(
-            leading: GoogleUserCircleAvatar(
-              identity: loginUser,
-            ),
-            title: Text(loginUser.displayName ?? ''),
-            subtitle: Text(loginUser.email ?? ''),
-          ),
-          const Text("サインインに成功しました"),
-          Text(_contactText ?? ''),
-          RaisedButton(
-            child: const Text('Googleからサインアウト'),
-            onPressed: _handleSignOut,
-          ),
-          RaisedButton(
-            child: const Text('チャットルームに入る'),
-            onPressed: () => Navigator.of(context).pushNamed('/chat'),
-          ),
-        ],
-      );*/
-    } else {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          const Text("チャットを開始するにはサインインが必要です"),
-          RaisedButton(
-            child: const Text('Googleでログインしてください'),
-            onPressed: _handleSignIn,
-          ),
-        ],
-      );
-    }
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        const Text("チャットを開始するにはサインインが必要です"),
+        RaisedButton(
+          child: const Text('Googleでログインしてください'),
+          onPressed: _handleSignIn,
+        ),
+      ],
+    );
   }
 
   @override
