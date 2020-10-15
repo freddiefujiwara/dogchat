@@ -140,11 +140,11 @@ class Messagestream extends StatelessWidget {
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text('Something went wrong');
+            return Text('システムエラーが発生しました');
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return Text("よみこみ中...");
           }
           if (!snapshot.hasData) {
             return Center(
@@ -158,9 +158,9 @@ class Messagestream extends StatelessWidget {
             for (var message in messages) {
               final messageText = message.data()['text'];
               final messageSender = message.data()['sender'];
-              final currentuser = loginUser.email;
+              final currentUser = loginUser.email;
               bool val;
-              if (currentuser != messageSender)
+              if (currentUser != messageSender)
                 val = false;
               else
                 val = true;
