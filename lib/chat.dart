@@ -36,7 +36,7 @@ class _ChatState extends State<Chat> {
       return;
     }
     _fireStore.collection('messages').add({
-      'id': id,
+      'id': "$id",
       'text': this.message,
       'sender': loginUser.email,
       'photo': loginUser.photoUrl,
@@ -163,7 +163,7 @@ class MessageStream extends StatelessWidget {
     return StreamBuilder(
         stream: _fireStore
             .collection('messages')
-            .where('id', isEqualTo: id)
+            .where('id', isEqualTo: "$id")
             .orderBy('timestamp', descending: false)
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
