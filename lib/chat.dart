@@ -7,8 +7,6 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const String id = 'wQC5CvsRRoSyQmX8j7KJabDziToSR33c';
-
 final _fireStore = FirebaseFirestore.instance;
 
 class Chat extends StatefulWidget {

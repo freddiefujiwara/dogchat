@@ -34,11 +34,12 @@ class HomeState extends State<Home> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        const Text("チャットを開始するにはサインインが必要です"),
-        RaisedButton(
-          child: const Text('Googleでログインしてください'),
-          onPressed: _handleSignIn,
-        ),
+        const Text("利用を開始するにはサインインが必要です"),
+        FlatButton(
+            onPressed: _handleSignIn,
+            padding: EdgeInsets.all(0.0),
+            child: Image.network(
+                'https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png')),
       ],
     );
   }
