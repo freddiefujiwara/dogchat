@@ -6,6 +6,7 @@ import 'package:dogchat/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final _firestore = FirebaseFirestore.instance;
 GoogleSignInAccount loginUser;
@@ -142,8 +143,16 @@ class MessageBubble extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Linkify(
-                onOpen: (link) => print("Clicked ${link.url}!"),
+                onOpen: (link) async {
+                  if (await canLaunch(link.url)) {
+                    await launch(link.url);
+                  } else {
+                    throw 'Could not launch $link';
+                  }
+                },
                 text: '$TextMsg',
+                style: TextStyle(color: Colors.black87, fontSize: 12),
+                linkStyle: TextStyle(color: Colors.red, fontSize: 12),
               ),
             ),
           ),
