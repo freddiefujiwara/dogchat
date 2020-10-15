@@ -7,12 +7,12 @@ const RESOURCES = {
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "b14fcf3ee94e3ace300b192e9e7c8c5d",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
-"assets/NOTICES": "95e16172e2b4462764fa6ef3002daff2",
+"assets/NOTICES": "ede761f4fe2ec5e51e48f6a8c7a18f1c",
 "favicon.png": "d859f42b9797eeb476f23e6228c5c1bb",
-"main.dart.js": "7f893ad806799d1b814792da678ca73b",
+"main.dart.js": "ab5f69073180ba741c181a0267f85728",
 "manifest.json": "d49f46c1da3c8eebdf5f262f490615b1",
-"index.html": "9baa9844a217e8fdaaa1a848b3752f95",
-"/": "9baa9844a217e8fdaaa1a848b3752f95",
+"index.html": "a9d6b579bc34c597f9e00d945295db9e",
+"/": "a9d6b579bc34c597f9e00d945295db9e",
 "icons/Icon-192.png": "c1bdfb6efe5105bfbb6811d3c781fcd1",
 "icons/Icon-512.png": "ef9acd6b6133e28ed1c092e311d6c032"
 };
