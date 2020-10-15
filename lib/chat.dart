@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dogchat/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 final _firestore = FirebaseFirestore.instance;
-User loginUser;
+GoogleSignInAccount loginUser;
 
 class Chat extends StatefulWidget {
   static const String id = "Chat_screen";
@@ -18,21 +18,17 @@ class Chat extends StatefulWidget {
 class _ChatState extends State<Chat> {
   final messageController = TextEditingController();
   String message;
-  final _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
     getData();
-
     super.initState();
   }
 
   void getData() {
     try {
-      final user = _auth.currentUser;
-      if (user != null) {
-        loginUser = user;
-        print(loginUser.email);
+      if (loginUser != null) {
+        print(loginUser.displayName);
       }
     } catch (e) {
       print(e);
@@ -41,6 +37,7 @@ class _ChatState extends State<Chat> {
 
   @override
   Widget build(BuildContext context) {
+    loginUser = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         leading: null,
@@ -48,7 +45,6 @@ class _ChatState extends State<Chat> {
           IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-                _auth.signOut();
                 Navigator.pop(context);
               }),
         ],

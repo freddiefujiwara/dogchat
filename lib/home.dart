@@ -111,7 +111,8 @@ class HomeState extends State<Home> {
           ),
           RaisedButton(
             child: const Text('START CHAT'),
-            onPressed: () => Navigator.of(context).pushNamed('/chat', arguments:_currentUser),
+            onPressed: () => Navigator.of(context)
+                .pushNamed('/chat', arguments: _currentUser),
           ),
         ],
       );
