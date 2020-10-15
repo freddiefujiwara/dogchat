@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:dogchat/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final _firestore = FirebaseFirestore.instance;
@@ -20,18 +21,12 @@ class _ChatState extends State<Chat> {
 
   @override
   void initState() {
-    getData();
+    googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+      setState(() {
+        loginUser = account;
+      });
+    });
     super.initState();
-  }
-
-  void getData() {
-    try {
-      if (loginUser != null) {
-        print(loginUser.displayName);
-      }
-    } catch (e) {
-      print(e);
-    }
   }
 
   void _handlePost() {
