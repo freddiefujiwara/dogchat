@@ -81,7 +81,7 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('ワンタイムチャット(dogchat)'),
+          title: const Text('🐕 Dog Chat -ワンタイムチャット-'),
         ),
         body: ConstrainedBox(
           constraints: const BoxConstraints.expand(),
