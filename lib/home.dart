@@ -15,7 +15,6 @@ class HomeState extends State<Home> {
       setState(() {
         loginUser = account;
       });
-      Navigator.of(context).pushNamed('/chat');
     });
     googleSignIn.signInSilently();
   }
@@ -29,6 +28,7 @@ class HomeState extends State<Home> {
   }
 
   Widget _buildBody() {
+    Navigator.of(context).pushNamed('/chat');
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[

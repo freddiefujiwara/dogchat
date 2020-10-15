@@ -50,6 +50,7 @@ class _ChatState extends State<Chat> {
             icon: Icon(Icons.logout),
             onPressed: () async {
               await googleSignIn.disconnect();
+              loginUser = null;
               Navigator.of(context).popUntil(ModalRoute.withName('/'));
             }),
         title: Text('🐕 Dog Chat -ワンタイムチャット-'),
