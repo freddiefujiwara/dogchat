@@ -64,7 +64,7 @@ class _ChatState extends State<Chat> {
           children: <Widget>[
             MessageStream(),
             Container(
-              decoration: kMessageContainerDecoration,
+              decoration: dMessageContainerDecoration,
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -77,7 +77,7 @@ class _ChatState extends State<Chat> {
                         this.message = value;
                         this._handlePost();
                       },
-                      decoration: kMessageTextFieldDecoration,
+                      decoration: dMessageTextFieldDecoration,
                     ),
                   ),
                   FlatButton(
@@ -129,7 +129,7 @@ class MessageBubble extends StatelessWidget {
                   isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
               children: isMe ? sendersInfo.reversed.toList() : sendersInfo),
           Material(
-            borderRadius: isMe ? Kborderradiusright : Kborderradiusleft,
+            borderRadius: isMe ? dBorderRadiusRight : dBorderRadiusLeft,
             elevation: 10,
             color: isMe ? Colors.blueAccent : Colors.greenAccent,
             child: Padding(
@@ -168,7 +168,7 @@ class MessageStream extends StatelessWidget {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("よみこみ中...");
+            return Text("読み込み中...");
           }
           if (!snapshot.hasData) {
             return Center(
