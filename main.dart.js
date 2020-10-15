@@ -30976,7 +30976,7 @@ return new B.um(new F.QG(),O.a7g(s,s.ghE().k_(0,"messages")).YQ(0,"timestamp",!1
 F.QG.prototype={
 $2:function(a,b){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e=null,d="data"
 if(b.c!=null)return L.fq("\u30b7\u30b9\u30c6\u30e0\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f",e,e,e,e,e)
-if(b.a===C.pK)return L.fq("\u3088\u307f\u3053\u307f\u4e2d...",e,e,e,e,e)
+if(b.a===C.pK)return L.fq("\u8aad\u307f\u8fbc\u307f\u4e2d...",e,e,e,e,e)
 s=b.b
 if(s==null)return T.qc(new U.qd(e,C.nf,e,e,e,e),e,e)
 else{r=J.a6J(s)
@@ -55300,7 +55300,7 @@ C.xp=new X.n3("ImageRepeat.repeatY")
 C.ds=new X.n3("ImageRepeat.noRepeat")
 C.wR=new V.aM(20,10,20,10)
 C.lv=new F.H9(C.q)
-C.xq=new L.rr(null,null,null,null,null,null,"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044...",null,null,null,null,null,!0,C.q2,null,C.wR,!1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,C.lv,!0,null,null)
+C.xq=new L.rr(null,null,null,null,null,null,"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u5165\u529b",null,null,null,null,null,!0,C.q2,null,C.wR,!1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,C.lv,!0,null,null)
 C.xs=new Z.jj(0,0.1,C.aO)
 C.qb=new Z.jj(0.5,1,C.dl)
 C.xu=new Z.jj(0,0.5,C.aG)
