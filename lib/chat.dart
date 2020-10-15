@@ -42,6 +42,7 @@ class _ChatState extends State<Chat> {
     _firestore.collection('messages').add({
       'text': this.message,
       'sender': loginUser.email,
+      'photo': loginUser.photoUrl,
       'timestamp': FieldValue.serverTimestamp(),
     });
     this.messageController.clear();
@@ -68,7 +69,7 @@ class _ChatState extends State<Chat> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Messagestream(),
+            MessageStream(),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
@@ -104,9 +105,10 @@ class _ChatState extends State<Chat> {
 }
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble({this.Sender, this.TextMsg, this.isMe});
+  MessageBubble({this.Sender, this.TextMsg, this.Photo, this.isMe});
   final TextMsg;
   final Sender;
+  final Photo;
   bool isMe;
 
   @override
@@ -117,6 +119,17 @@ class MessageBubble extends StatelessWidget {
         crossAxisAlignment:
             isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
+          Container(
+            width: 200,
+            height: 200,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  image: NetworkImage(this.Photo ??
+                      'https://freddiefujiwara.com/dogchat/favicon.png'),
+                  fit: BoxFit.fill),
+            ),
+          ),
           Text(
             "$Sender",
             style: TextStyle(color: Colors.black87, fontSize: 12),
@@ -139,7 +152,7 @@ class MessageBubble extends StatelessWidget {
   }
 }
 
-class Messagestream extends StatelessWidget {
+class MessageStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -163,10 +176,11 @@ class Messagestream extends StatelessWidget {
             );
           } else {
             final messages = snapshot.data.docs;
-            List<MessageBubble> messagewidgets = [];
+            List<MessageBubble> messageWidgets = [];
             for (var message in messages) {
               final messageText = message.data()['text'];
               final messageSender = message.data()['sender'];
+              final messageSenderPhoto = message.data()['photo'];
               final currentUser = loginUser.email;
               bool val;
               if (currentUser != messageSender)
@@ -176,9 +190,10 @@ class Messagestream extends StatelessWidget {
               final messageBubbler = MessageBubble(
                 Sender: messageSender,
                 TextMsg: messageText,
+                Photo: messageSenderPhoto,
                 isMe: val,
               );
-              messagewidgets.add(messageBubbler);
+              messageWidgets.add(messageBubbler);
             }
             return Expanded(
                 child: ListView(
@@ -187,7 +202,7 @@ class Messagestream extends StatelessWidget {
               children: [
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: messagewidgets),
+                    children: messageWidgets),
               ],
             ));
           }
