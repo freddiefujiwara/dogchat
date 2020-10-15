@@ -30717,7 +30717,7 @@ P.hp(s)}},
 M:function(a,b){var s,r,q=null
 $.a3_=T.QF(b,t._).b.b
 s=t.t
-r=E.a6k(H.d([B.P3(q,L.a7o(C.x9),new F.Yv(b),q)],s),C.nb,q,L.dY("\ud83d\udc15 Dog Chat",q,q,q,q,q))
+r=E.a6k(H.d([B.P3(q,L.a7o(C.x9),new F.Yv(b),q)],s),C.nb,q,L.dY("\ud83d\udc15 Dog Chat -\u30ef\u30f3\u30bf\u30a4\u30e0\u30c1\u30e3\u30c3\u30c8-",q,q,q,q,q))
 return M.a8B(r,Q.a4B(!0,T.yB(H.d([new F.AH(q),M.kp(q,T.a8y(H.d([T.a78(new Z.um(this.d,C.xi,C.As,C.zZ,C.A_,C.Dc,new F.Yw(this),q)),N.afA(L.dY("Send",q,q,q,C.BT,q),new F.Yx(this),q,q)],s),C.j_,C.na),q,q,C.uj,q,q,q,q,q,q)],s),C.dk,C.qK),C.aE,!0))}}
 F.Yv.prototype={
 $0:function(){K.B3(this.a).q2(0,null)},
@@ -30801,9 +30801,9 @@ if(o!=null){s=o.a
 s=L.dY(s==null?"":s,p,p,p,p,p)
 r=o.b
 r=L.dY(r==null?"":r,p,p,p,p,p)
-return T.yB(H.d([new Q.Ar(new O.r3(o,p),s,r,p),C.D5,L.dY("",p,p,p,p,p),D.a4z(C.D7,q.gPD()),D.a4z(C.D3,new Y.OF(q))],t.t),C.j_,C.n9)}else return T.yB(H.d([C.D6,D.a4z(C.D4,q.gPC())],t.t),C.j_,C.n9)},
+return T.yB(H.d([new Q.Ar(new O.r3(o,p),s,r,p),C.D6,L.dY("",p,p,p,p,p),D.a4z(C.D8,q.gPD()),D.a4z(C.D3,new Y.OF(q))],t.t),C.j_,C.n9)}else return T.yB(H.d([C.D7,D.a4z(C.D4,q.gPC())],t.t),C.j_,C.n9)},
 M:function(a,b){var s=null
-return M.a8B(E.a6k(s,s,s,C.D8),new T.ec(C.lP,this.Ls(),s))}}
+return M.a8B(E.a6k(s,s,s,C.D5),new T.ec(C.lP,this.Ls(),s))}}
 Y.OH.prototype={
 $1:function(a){var s=this.a
 s.aJ(new Y.OG(s,a))},
@@ -56188,10 +56188,10 @@ C.D2=new R.d7(C.AF,C.Bj,C.CR,C.Cp,C.AZ,C.AG,C.BO,C.CA,C.CP,C.B9,C.CQ,C.BX,C.Bv)
 C.tw=new U.DS("TextWidthBasis.longestLine")
 C.D3=new L.h8("\u30c1\u30e3\u30c3\u30c8\u30eb\u30fc\u30e0\u306b\u5165\u308b",null,null,null,null,null,null)
 C.D4=new L.h8("Google\u3067\u30ed\u30b0\u30a4\u30f3\u3057\u3066\u304f\u3060\u3055\u3044",null,null,null,null,null,null)
-C.D5=new L.h8("\u30b5\u30a4\u30f3\u30a4\u30f3\u306b\u6210\u529f\u3057\u307e\u3057\u305f",null,null,null,null,null,null)
-C.D6=new L.h8("\u30c1\u30e3\u30c3\u30c8\u3092\u958b\u59cb\u3059\u308b\u306b\u306f\u30b5\u30a4\u30f3\u30a4\u30f3\u304c\u5fc5\u8981\u3067\u3059",null,null,null,null,null,null)
-C.D7=new L.h8("Google\u304b\u3089\u30b5\u30a4\u30f3\u30a2\u30a6\u30c8",null,null,null,null,null,null)
-C.D8=new L.h8("\u30ef\u30f3\u30bf\u30a4\u30e0\u30c1\u30e3\u30c3\u30c8(dogchat)",null,null,null,null,null,null)
+C.D5=new L.h8("\ud83d\udc15 Dog Chat -\u30ef\u30f3\u30bf\u30a4\u30e0\u30c1\u30e3\u30c3\u30c8-",null,null,null,null,null,null)
+C.D6=new L.h8("\u30b5\u30a4\u30f3\u30a4\u30f3\u306b\u6210\u529f\u3057\u307e\u3057\u305f",null,null,null,null,null,null)
+C.D7=new L.h8("\u30c1\u30e3\u30c3\u30c8\u3092\u958b\u59cb\u3059\u308b\u306b\u306f\u30b5\u30a4\u30f3\u30a4\u30f3\u304c\u5fc5\u8981\u3067\u3059",null,null,null,null,null,null)
+C.D8=new L.h8("Google\u304b\u3089\u30b5\u30a4\u30f3\u30a2\u30a6\u30c8",null,null,null,null,null,null)
 C.EY=new S.WX("ThemeMode.system")
 C.D9=new M.ut(null)
 C.on=new P.X_(0,"TileMode.clamp")
