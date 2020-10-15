@@ -54,6 +54,7 @@ class _ChatState extends State<Chat> {
             }),
         title: Text('🐕 Dog Chat -ワンタイムチャット-'),
         backgroundColor: Colors.lightBlueAccent,
+        centerTitle: true,
       ),
       body: SafeArea(
         child: Column(

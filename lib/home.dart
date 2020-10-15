@@ -46,6 +46,7 @@ class HomeState extends State<Home> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('🐕 Dog Chat -ワンタイムチャット-'),
+          centerTitle: true,
         ),
         body: ConstrainedBox(
           constraints: const BoxConstraints.expand(),
