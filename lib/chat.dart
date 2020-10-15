@@ -117,28 +117,26 @@ class MessageBubble extends StatelessWidget {
             isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment:
+                  isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
               children: [
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        width: 30,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: NetworkImage(this.Photo ??
-                                  'https://freddiefujiwara.com/dogchat/favicon.png'),
-                              fit: BoxFit.fill),
-                        ),
-                      ),
-                      Text(
-                        "$Sender",
-                        style: TextStyle(color: Colors.black87, fontSize: 12),
-                      ),
-                    ]),
+                Row(children: [
+                  Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: NetworkImage(this.Photo ??
+                              'https://freddiefujiwara.com/dogchat/favicon.png'),
+                          fit: BoxFit.fill),
+                    ),
+                  ),
+                  Text(
+                    "$Sender",
+                    style: TextStyle(color: Colors.black87, fontSize: 12),
+                  ),
+                ]),
               ]),
           Material(
             borderRadius: isMe ? Kborderradiusright : Kborderradiusleft,
