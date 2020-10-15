@@ -36,6 +36,9 @@ class _ChatState extends State<Chat> {
   }
 
   void _handlePost() {
+    if (this.message == null || this.message.length == 0) {
+      return;
+    }
     _firestore.collection('messages').add({
       'text': this.message,
       'sender': loginUser.email,
