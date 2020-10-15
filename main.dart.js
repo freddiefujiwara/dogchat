@@ -30746,8 +30746,8 @@ M:function(a,b){var s=$.a5Y()
 return new B.uc(new F.Ql(),O.a6I(s,s.ghA().jY(0,"messages")).YB(0,"timestamp",!1).Hw(),null,t.wM)}}
 F.Ql.prototype={
 $2:function(a,b){var s,r,q,p,o,n,m,l,k,j,i,h,g,f=null,e="data"
-if(b.c!=null)return L.dY("Something went wrong",f,f,f,f,f)
-if(b.a===C.pI)return L.dY("Loading",f,f,f,f,f)
+if(b.c!=null)return L.dY("\u30b7\u30b9\u30c6\u30e0\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f",f,f,f,f,f)
+if(b.a===C.pI)return L.dY("\u3088\u307f\u3053\u307f\u4e2d...",f,f,f,f,f)
 s=b.b
 if(s==null)return T.q1(new U.q2(f,C.qR,f,f,f,f),f,f)
 else{r=J.a68(s)
