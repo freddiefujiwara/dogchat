@@ -46,15 +46,12 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: null,
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.logout),
-              onPressed: () async {
-                await googleSignIn.disconnect();
-                Navigator.of(context).popUntil(ModalRoute.withName('/'));
-              }),
-        ],
+        leading: IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () async {
+              await googleSignIn.disconnect();
+              Navigator.of(context).popUntil(ModalRoute.withName('/'));
+            }),
         title: Text('🐕 Dog Chat -ワンタイムチャット-'),
         backgroundColor: Colors.lightBlueAccent,
       ),
