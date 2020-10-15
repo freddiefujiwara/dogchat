@@ -7,7 +7,9 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final _firestore = FirebaseFirestore.instance;
+const String id = 'wQC5CvsRRoSyQmX8j7KJabDziToSR33c';
+
+final _fireStore = FirebaseFirestore.instance;
 
 class Chat extends StatefulWidget {
   static const String id = "Chat_screen";
@@ -33,7 +35,8 @@ class _ChatState extends State<Chat> {
     if (this.message == null || this.message.length == 0) {
       return;
     }
-    _firestore.collection('messages').add({
+    _fireStore.collection('messages').add({
+      'id': id,
       'text': this.message,
       'sender': loginUser.email,
       'photo': loginUser.photoUrl,
@@ -158,8 +161,9 @@ class MessageStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: _firestore
+        stream: _fireStore
             .collection('messages')
+            .where('id', isEqualTo: id)
             .orderBy('timestamp', descending: false)
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
