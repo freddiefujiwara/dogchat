@@ -35,6 +35,15 @@ class _ChatState extends State<Chat> {
     }
   }
 
+  void _handlePost() {
+    _firestore.collection('messages').add({
+      'text': this.message,
+      'sender': loginUser.email,
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+    this.messageController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     loginUser = ModalRoute.of(context).settings.arguments;
@@ -65,20 +74,17 @@ class _ChatState extends State<Chat> {
                     child: TextField(
                       controller: messageController,
                       onChanged: (value) {
-                        message = value;
+                        this.message = value;
+                      },
+                      onSubmitted: (String value) {
+                        this.message = value;
+                        this._handlePost();
                       },
                       decoration: kMessageTextFieldDecoration,
                     ),
                   ),
                   FlatButton(
-                    onPressed: () {
-                      _firestore.collection('messages').add({
-                        'text': message,
-                        'sender': loginUser.email,
-                        'timestamp': FieldValue.serverTimestamp(),
-                      });
-                      messageController.clear();
-                    },
+                    onPressed: this._handlePost,
                     child: Text(
                       'Send',
                       style: kSendButtonTextStyle,
