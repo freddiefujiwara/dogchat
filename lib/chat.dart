@@ -49,9 +49,10 @@ class _ChatState extends State<Chat> {
         leading: null,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
-                Navigator.pop(context);
+              icon: Icon(Icons.logout),
+              onPressed: () async {
+                await googleSignIn.disconnect();
+                Navigator.of(context).popUntil(ModalRoute.withName('/'));
               }),
         ],
         title: Text('🐕 Dog Chat -ワンタイムチャット-'),
