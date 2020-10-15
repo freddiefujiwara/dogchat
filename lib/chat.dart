@@ -116,24 +116,22 @@ class MessageBubble extends StatelessWidget {
         crossAxisAlignment:
             isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          Column(children: [
-            Row(children: [
-              Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: NetworkImage(this.Photo ??
-                          'https://freddiefujiwara.com/dogchat/favicon.png'),
-                      fit: BoxFit.fill),
-                ),
+          Row(children: [
+            Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: NetworkImage(this.Photo ??
+                        'https://freddiefujiwara.com/dogchat/favicon.png'),
+                    fit: BoxFit.fill),
               ),
-              Text(
-                "$Sender",
-                style: TextStyle(color: Colors.black87, fontSize: 12),
-              ),
-            ]),
+            ),
+            Text(
+              "$Sender",
+              style: TextStyle(color: Colors.black87, fontSize: 12),
+            ),
           ]),
           Material(
             borderRadius: isMe ? Kborderradiusright : Kborderradiusleft,
