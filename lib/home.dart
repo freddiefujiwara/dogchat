@@ -28,7 +28,9 @@ class HomeState extends State<Home> {
   }
 
   Widget _buildBody() {
-    Navigator.of(context).pushNamed('/chat');
+    if (loginUser != null) {
+      Navigator.of(context).pushNamed('/chat');
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
