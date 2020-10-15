@@ -1,15 +1,12 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dogchat/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final _firestore = FirebaseFirestore.instance;
-GoogleSignInAccount loginUser;
 
 class Chat extends StatefulWidget {
   static const String id = "Chat_screen";

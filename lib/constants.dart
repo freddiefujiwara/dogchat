@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 const kSendButtonTextStyle = TextStyle(
   color: Colors.lightBlueAccent,
@@ -43,3 +44,12 @@ const Kborderradiusleft = BorderRadius.only(
     topRight: Radius.circular(30),
     bottomRight: Radius.circular(30),
     bottomLeft: Radius.circular(30));
+
+GoogleSignInAccount loginUser;
+
+GoogleSignIn googleSignIn = GoogleSignIn(
+  scopes: <String>[
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
