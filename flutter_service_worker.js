@@ -12,8 +12,8 @@ const RESOURCES = {
 "privacy_policy.html": "a8d6e465f8eecd764c403f6132c51a4f",
 "main.dart.js": "e4a3f06e93a220507b31b0eff7cd9ab1",
 "manifest.json": "d49f46c1da3c8eebdf5f262f490615b1",
-"index.html": "190edb8dfff1151842dea6af7dce76b8",
-"/": "190edb8dfff1151842dea6af7dce76b8",
+"index.html": "f73532bb3ada65ebe462a67156587414",
+"/": "f73532bb3ada65ebe462a67156587414",
 "icons/Icon-192.png": "c1bdfb6efe5105bfbb6811d3c781fcd1",
 "icons/Icon-512.png": "ef9acd6b6133e28ed1c092e311d6c032"
 };
