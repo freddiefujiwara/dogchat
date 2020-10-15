@@ -30715,7 +30715,9 @@ je:function(a){var s,r,q
 try{r=$.a3_
 if(r!=null)P.hp(r.a)}catch(q){s=H.Q(q)
 P.hp(s)}},
-At:function(){var s,r,q,p=$.a5Y()
+At:function(){var s,r,q,p=this.e
+if(p==null||p.length===0)return
+p=$.a5Y()
 p=O.a6I(p,p.ghA().jY(0,"messages"))
 s=this.e
 r=$.a3_.b
