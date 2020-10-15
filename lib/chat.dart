@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:dogchat/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 
 final _firestore = FirebaseFirestore.instance;
 GoogleSignInAccount loginUser;
@@ -120,8 +121,8 @@ class MessageBubble extends StatelessWidget {
             isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Container(
-            width: 200,
-            height: 200,
+            width: 20,
+            height: 20,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
@@ -140,9 +141,9 @@ class MessageBubble extends StatelessWidget {
             color: isMe ? Colors.blueAccent : Colors.greenAccent,
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              child: Text(
-                '$TextMsg',
-                style: TextStyle(fontSize: 15),
+              child: Linkify(
+                onOpen: (link) => print("Clicked ${link.url}!"),
+                text: '$TextMsg',
               ),
             ),
           ),
