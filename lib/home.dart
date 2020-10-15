@@ -1,7 +1,3 @@
-import "package:http/http.dart" as http;
-
-import 'dart:convert' show json;
-
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -28,57 +24,8 @@ class HomeState extends State<Home> {
       setState(() {
         _currentUser = account;
       });
-      if (_currentUser != null) {
-        _handleGetContact();
-      }
     });
     _googleSignIn.signInSilently();
-  }
-
-  Future<void> _handleGetContact() async {
-    setState(() {
-      _contactText = "Loading contact info...";
-    });
-    final http.Response response = await http.get(
-      'https://people.googleapis.com/v1/people/me/connections'
-      '?requestMask.includeField=person.names',
-      headers: await _currentUser.authHeaders,
-    );
-    if (response.statusCode != 200) {
-      setState(() {
-        _contactText = "People API gave a ${response.statusCode} "
-            "response. Check logs for details.";
-      });
-      print('People API ${response.statusCode} response: ${response.body}');
-      return;
-    }
-    final Map<String, dynamic> data = json.decode(response.body);
-    final String namedContact = _pickFirstNamedContact(data);
-    setState(() {
-      if (namedContact != null) {
-        _contactText = "I see you know $namedContact!";
-      } else {
-        _contactText = "No contacts to display.";
-      }
-    });
-  }
-
-  String _pickFirstNamedContact(Map<String, dynamic> data) {
-    final List<dynamic> connections = data['connections'];
-    final Map<String, dynamic> contact = connections?.firstWhere(
-      (dynamic contact) => contact['names'] != null,
-      orElse: () => null,
-    );
-    if (contact != null) {
-      final Map<String, dynamic> name = contact['names'].firstWhere(
-        (dynamic name) => name['displayName'] != null,
-        orElse: () => null,
-      );
-      if (name != null) {
-        return name['displayName'];
-      }
-    }
-    return null;
   }
 
   Future<void> _handleSignIn() async {
@@ -103,14 +50,14 @@ class HomeState extends State<Home> {
             title: Text(_currentUser.displayName ?? ''),
             subtitle: Text(_currentUser.email ?? ''),
           ),
-          const Text("Signed in successfully."),
+          const Text("サインインに成功しました"),
           Text(_contactText ?? ''),
           RaisedButton(
-            child: const Text('SIGN OUT'),
+            child: const Text('Googleからサインアウト'),
             onPressed: _handleSignOut,
           ),
           RaisedButton(
-            child: const Text('START CHAT'),
+            child: const Text('チャットルームに入る'),
             onPressed: () => Navigator.of(context)
                 .pushNamed('/chat', arguments: _currentUser),
           ),
@@ -120,9 +67,9 @@ class HomeState extends State<Home> {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          const Text("You are not currently signed in."),
+          const Text("チャットを開始するにはサインインが必要です"),
           RaisedButton(
-            child: const Text('SIGN IN'),
+            child: const Text('Googleでログインしてください'),
             onPressed: _handleSignIn,
           ),
         ],
@@ -134,7 +81,7 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Google Sign In'),
+          title: const Text('ワンタイムチャット(dogchat)'),
         ),
         body: ConstrainedBox(
           constraints: const BoxConstraints.expand(),

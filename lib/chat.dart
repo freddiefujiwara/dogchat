@@ -48,7 +48,7 @@ class _ChatState extends State<Chat> {
                 Navigator.pop(context);
               }),
         ],
-        title: Text('⚡️Chat'),
+        title: Text('🐕 Dog Chat'),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: SafeArea(
