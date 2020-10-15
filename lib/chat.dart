@@ -90,12 +90,7 @@ class _ChatState extends State<Chat> {
                     ),
                   ),
                   FlatButton(
-                    onPressed: this._handlePost,
-                    child: Text(
-                      '送る',
-                      style: kSendButtonTextStyle,
-                    ),
-                  ),
+                      onPressed: this._handlePost, child: Icon(Icons.send)),
                 ],
               ),
             ),
