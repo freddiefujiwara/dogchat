@@ -110,6 +110,23 @@ class MessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> sendersInfo = [
+      Container(
+        width: 30,
+        height: 30,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+              image: NetworkImage(this.Photo ??
+                  'https://freddiefujiwara.com/dogchat/favicon.png'),
+              fit: BoxFit.fill),
+        ),
+      ),
+      Text(
+        "$Sender",
+        style: TextStyle(color: Colors.black87, fontSize: 12),
+      ),
+    ];
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Column(
@@ -119,23 +136,7 @@ class MessageBubble extends StatelessWidget {
           Row(
               mainAxisAlignment:
                   isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
-              children: [
-                Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: NetworkImage(this.Photo ??
-                            'https://freddiefujiwara.com/dogchat/favicon.png'),
-                        fit: BoxFit.fill),
-                  ),
-                ),
-                Text(
-                  "$Sender",
-                  style: TextStyle(color: Colors.black87, fontSize: 12),
-                ),
-              ]),
+              children: isMe ? sendersInfo.reversed.toList() : sendersInfo),
           Material(
             borderRadius: isMe ? Kborderradiusright : Kborderradiusleft,
             elevation: 10,
