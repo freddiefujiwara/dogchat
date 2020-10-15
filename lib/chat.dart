@@ -168,6 +168,7 @@ class MessageStream extends StatelessWidget {
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
+            print(snapshot.error);
             return Text('システムエラーが発生しました');
           }
 
