@@ -30726,7 +30726,7 @@ M:function(a,b){var s,r,q=this,p=null
 $.a3_=T.QF(b,t._).b.b
 s=t.t
 r=E.a6k(H.d([B.P3(p,L.a7o(C.x9),new F.Yv(b),p)],s),C.nb,p,L.dY("\ud83d\udc15 Dog Chat -\u30ef\u30f3\u30bf\u30a4\u30e0\u30c1\u30e3\u30c3\u30c8-",p,p,p,p,p))
-return M.a8B(r,Q.a4B(!0,T.yC(H.d([new F.AI(p),M.kp(p,T.a8y(H.d([T.a78(new Z.um(q.d,C.xi,C.As,C.zZ,C.A_,C.Dc,new F.Yw(q),new F.Yx(q),p)),N.afA(L.dY("Send",p,p,p,C.BT,p),q.gPf(),p,p)],s),C.j_,C.na),p,p,C.uj,p,p,p,p,p,p)],s),C.dk,C.qK),C.aE,!0))}}
+return M.a8B(r,Q.a4B(!0,T.yC(H.d([new F.AI(p),M.kp(p,T.a8y(H.d([T.a78(new Z.um(q.d,C.xi,C.As,C.zZ,C.A_,C.Dc,new F.Yw(q),new F.Yx(q),p)),N.afA(L.dY("\u9001\u308b",p,p,p,C.BT,p),q.gPf(),p,p)],s),C.j_,C.na),p,p,C.uj,p,p,p,p,p,p)],s),C.dk,C.qK),C.aE,!0))}}
 F.Yv.prototype={
 $0:function(){K.B4(this.a).q2(0,null)},
 $C:"$0",
@@ -54945,7 +54945,7 @@ C.xh=new X.mU("ImageRepeat.repeatY")
 C.ha=new X.mU("ImageRepeat.noRepeat")
 C.wK=new V.aL(20,10,20,10)
 C.ls=new F.GO(C.q)
-C.xi=new L.rg(null,null,null,null,null,null,"Type your message here...",null,null,null,null,null,!0,C.q0,null,C.wK,!1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,C.ls,!0,null,null)
+C.xi=new L.rg(null,null,null,null,null,null,"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044...",null,null,null,null,null,!0,C.q0,null,C.wK,!1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,C.ls,!0,null,null)
 C.xk=new Z.jb(0,0.1,C.aN)
 C.q9=new Z.jb(0.5,1,C.dl)
 C.xm=new Z.jb(0,0.5,C.aD)
