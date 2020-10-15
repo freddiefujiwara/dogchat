@@ -30946,7 +30946,7 @@ s.AB()},
 $S:78}
 F.t1.prototype={
 M:function(a,b){var s,r,q=this,p=null,o=q.f,n=o?C.m1:C.iZ,m=q.e
-m=M.j1(p,p,p,p,new S.dh(p,X.afE(C.pl,new D.li(m==null?"https://freddiefujiwara.com/dogchat/favicon.png":m,1),p),p,p,p,p,C.aX),p,50,p,p,p,50)
+m=M.j1(p,p,p,p,new S.dh(p,X.afE(C.pl,new D.li(m==null?"https://freddiefujiwara.com/dogchat/favicon.png":m,1),p),p,p,p,p,C.aX),p,30,p,p,p,30)
 s=L.eB(H.a(q.d),p,p,p,A.lF(p,p,C.y,p,p,p,p,p,p,p,p,12,p,p,p,p,!0,p,p,p,p,p,p),p)
 r=o?C.ub:C.uc
 o=o?C.nf:C.yL
