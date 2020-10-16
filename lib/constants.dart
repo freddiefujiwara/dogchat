@@ -29,7 +29,7 @@ GoogleSignInAccount loginUser;
 final GoogleSignIn googleSignIn = GoogleSignIn(
   scopes: <String>[
     'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
+    //'https://www.googleapis.com/auth/contacts.readonly',
   ],
 );
 final FirebaseAuth auth = FirebaseAuth.instance;

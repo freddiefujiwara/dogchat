@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
 import 'package:dogchat/constants.dart';
+import 'package:dogchat/ui/my/favorite_stream.dart';
 
-class Issue extends StatelessWidget {
+class My extends StatelessWidget {
   void _signOut(BuildContext context) {
-    googleSignIn.signOut();
-    loginUser = null;
-    id = null;
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      googleSignIn.signOut();
+      loginUser = null;
+      id = null;
       Navigator.of(context).popUntil(ModalRoute.withName('/'));
     });
   }
@@ -18,7 +19,7 @@ class Issue extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
               icon: Icon(Icons.logout), onPressed: () => _signOut(context)),
-          title: const Text('🐕 Dog Chat -ワンタイムチャット-'),
+          title: const Text('🐕 マイページ'),
           centerTitle: true,
         ),
         body: ConstrainedBox(
@@ -26,7 +27,6 @@ class Issue extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              const Text("新しいchat roomを作りますか？"),
               RaisedButton(
                 child: Text('新しいroomを作る'),
                 color: Colors.blue,
@@ -40,6 +40,7 @@ class Issue extends StatelessWidget {
                   });
                 },
               ),
+              FavoriteStream()
             ],
           ),
         ));

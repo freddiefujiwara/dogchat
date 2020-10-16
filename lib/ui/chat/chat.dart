@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:dogchat/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dogchat/ui/chat/message_stream.dart';
+import 'package:dogchat/ui/chat/favorite_stream.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final _fireStore = FirebaseFirestore.instance;
@@ -12,10 +13,10 @@ class Chat extends StatelessWidget {
   String message;
 
   void _signOut(BuildContext context) {
-    googleSignIn.signOut();
-    loginUser = null;
-    id = null;
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      googleSignIn.signOut();
+      loginUser = null;
+      id = null;
       Navigator.of(context).popUntil(ModalRoute.withName('/'));
     });
   }
@@ -44,10 +45,11 @@ class Chat extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             icon: Icon(Icons.logout), onPressed: () => _signOut(context)),
-        title: const Text('🐕 Dog Chat -ワンタイムチャット-'),
+        title: const Text('🐕 チャットルーム'),
         backgroundColor: Colors.lightBlueAccent,
         centerTitle: true,
         actions: [
+          FavoriteStream(),
           IconButton(
               icon: Icon(Icons.share),
               onPressed: () async {
