@@ -3,7 +3,7 @@ import 'package:dogchat/ui/chat/chat.dart';
 import 'package:dogchat/ui/my/my.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:dogchat/constants.dart';
+import 'package:dogchat/globals.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:dogchat/utils_stub.dart' if (dart.library.html) 'dart:html';
 

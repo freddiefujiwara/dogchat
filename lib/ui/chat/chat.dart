@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dogchat/constants.dart';
+import 'package:dogchat/globals.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dogchat/ui/chat/message_stream.dart';
 import 'package:dogchat/ui/chat/favorite_stream.dart';

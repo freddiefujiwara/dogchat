@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
-import 'package:dogchat/constants.dart';
+import 'package:dogchat/globals.dart';
 import 'package:dogchat/ui/my/favorite_stream.dart';
 
 class My extends StatelessWidget {
