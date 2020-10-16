@@ -22,7 +22,7 @@ Future<void> main() async {
       routes: <String, WidgetBuilder>{
         '/': (_) => new Home(),
         '/chat': (_) => new Chat(),
-        '/issue': (_) => new My(),
+        '/my': (_) => new My(),
       },
     ),
   );

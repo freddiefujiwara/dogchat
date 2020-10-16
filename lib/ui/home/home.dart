@@ -71,7 +71,7 @@ class HomeState extends State<Home> {
         });
       } else {
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          Navigator.of(context).pushNamed('/issue');
+          Navigator.of(context).pushNamed('/my');
         });
       }
     }

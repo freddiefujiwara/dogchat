@@ -40,6 +40,7 @@ class Chat extends StatelessWidget {
     id = ModalRoute.of(context).settings.arguments;
     if (id == null || id.isEmpty) {
       this._signOut(context);
+      return Container();
     }
     return Scaffold(
       appBar: AppBar(
@@ -50,6 +51,13 @@ class Chat extends StatelessWidget {
         centerTitle: true,
         actions: [
           FavoriteStream(),
+          IconButton(
+              icon: Icon(Icons.person),
+              onPressed: () async {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  Navigator.of(context).pushNamed('/my');
+                });
+              }),
           IconButton(
               icon: Icon(Icons.share),
               onPressed: () async {
