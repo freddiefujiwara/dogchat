@@ -42,7 +42,7 @@ class Chat extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             icon: Icon(Icons.logout), onPressed: () => _signOut(context)),
-        title: Text('🐕 Dog Chat -ワンタイムチャット-'),
+        title: const Text('🐕 Dog Chat -ワンタイムチャット-'),
         backgroundColor: Colors.lightBlueAccent,
         centerTitle: true,
         actions: [

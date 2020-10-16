@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
+import 'package:dogchat/constants.dart';
 
 class Issue extends StatelessWidget {
+  void _signOut(BuildContext context) {
+    googleSignIn.signOut();
+    loginUser = null;
+    id = null;
+    Navigator.of(context).popUntil(ModalRoute.withName('/'));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+              icon: Icon(Icons.logout), onPressed: () => _signOut(context)),
           title: const Text('🐕 Dog Chat -ワンタイムチャット-'),
           centerTitle: true,
         ),

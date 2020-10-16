@@ -72,7 +72,6 @@ class HomeState extends State<Home> {
       } else {
         Navigator.of(context).pushNamed('/issue');
       }
-      dispose();
     }
     return Scaffold(
         appBar: AppBar(
