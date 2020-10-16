@@ -68,9 +68,13 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     if (loginUser != null) {
       if (id != null) {
-        Navigator.of(context).pushNamed('/chat', arguments: id);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Navigator.of(context).pushNamed('/chat', arguments: id);
+        });
       } else {
-        Navigator.of(context).pushNamed('/issue');
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Navigator.of(context).pushNamed('/issue');
+        });
       }
     }
     return Scaffold(

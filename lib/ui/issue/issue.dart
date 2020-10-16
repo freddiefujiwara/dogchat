@@ -7,7 +7,9 @@ class Issue extends StatelessWidget {
     googleSignIn.signOut();
     loginUser = null;
     id = null;
-    Navigator.of(context).popUntil(ModalRoute.withName('/'));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.of(context).popUntil(ModalRoute.withName('/'));
+    });
   }
 
   @override
@@ -32,8 +34,10 @@ class Issue extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 onPressed: () {
-                  Navigator.of(context)
-                      .pushNamed('/chat', arguments: randomAlphaNumeric(32));
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    Navigator.of(context)
+                        .pushNamed('/chat', arguments: randomAlphaNumeric(32));
+                  });
                 },
               ),
             ],

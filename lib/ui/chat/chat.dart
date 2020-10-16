@@ -15,7 +15,9 @@ class Chat extends StatelessWidget {
     googleSignIn.signOut();
     loginUser = null;
     id = null;
-    Navigator.of(context).popUntil(ModalRoute.withName('/'));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.of(context).popUntil(ModalRoute.withName('/'));
+    });
   }
 
   void _handlePost() {
