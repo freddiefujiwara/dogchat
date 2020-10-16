@@ -9,11 +9,6 @@ final _fireStore = FirebaseFirestore.instance;
 
 class Chat extends StatefulWidget {
   @override
-  Chat({Key key, String identifier: ""}) : super(key: key) {
-    if (identifier != null && identifier.isNotEmpty) {
-      id = identifier;
-    }
-  }
   _ChatState createState() => _ChatState();
 }
 
@@ -47,13 +42,21 @@ class _ChatState extends State<Chat> {
 
   @override
   Widget build(BuildContext context) {
+    id = ModalRoute.of(context).settings.arguments;
+    if (id == null || id.isEmpty) {
+      googleSignIn.signOut();
+      loginUser = null;
+      id = null;
+      Navigator.of(context).popUntil(ModalRoute.withName('/'));
+    }
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
             icon: Icon(Icons.logout),
-            onPressed: () async {
-              await googleSignIn.disconnect();
+            onPressed: () {
+              googleSignIn.signOut();
               loginUser = null;
+              id = null;
               Navigator.of(context).popUntil(ModalRoute.withName('/'));
             }),
         title: Text('🐕 Dog Chat -ワンタイムチャット-'),

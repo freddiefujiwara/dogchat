@@ -21,17 +21,15 @@ class HomeState extends State<Home> {
 
   Future<void> _handleSignIn() async {
     try {
-      print("_handleSignIn(){");
       await googleSignIn.signIn();
     } catch (error) {
       print(error);
     }
-    print("}");
   }
 
   Widget _buildBody() {
-    if (loginUser != null) {
-      Navigator.of(context).pushNamed('/chat');
+    if (loginUser != null && id != null) {
+      Navigator.of(context).pushNamed('/chat', arguments: id);
     }
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
