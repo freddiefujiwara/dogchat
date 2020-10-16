@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -7,10 +8,10 @@ import 'package:dogchat/constants.dart';
 class MessageBubble extends StatelessWidget {
   MessageBubble(
       {this.Sender, this.TextMsg, this.Photo, this.TimeStamp, this.isMe});
-  final TextMsg;
-  final Sender;
-  final Photo;
-  final TimeStamp;
+  final String TextMsg;
+  final String Sender;
+  final String Photo;
+  final Timestamp TimeStamp;
   bool isMe;
 
   @override
@@ -62,7 +63,8 @@ class MessageBubble extends StatelessWidget {
               ),
             ),
           ),
-          Text('${DateTime.parse(TimeStamp.toDate().toString())}'),
+          Text(
+              '${TimeStamp == null ? "" : DateTime.parse(TimeStamp.toDate().toString())}'),
         ],
       ),
     );
