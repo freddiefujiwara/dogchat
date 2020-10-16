@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:dogchat/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dogchat/ui/chat/message_stream.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final _fireStore = FirebaseFirestore.instance;
 
@@ -44,6 +45,13 @@ class Chat extends StatelessWidget {
         title: Text('🐕 Dog Chat -ワンタイムチャット-'),
         backgroundColor: Colors.lightBlueAccent,
         centerTitle: true,
+        actions: [
+          IconButton(
+              icon: Icon(Icons.share),
+              onPressed: () async {
+                await launch("https://freddiefujiwara.com/dogchat/?id=$id");
+              }),
+        ],
       ),
       body: SafeArea(
         child: Column(
