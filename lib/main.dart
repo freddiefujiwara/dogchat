@@ -1,18 +1,15 @@
-import 'dart:async';
-
 import 'package:dogchat/ui/home/home.dart';
 import 'package:dogchat/ui/chat/chat.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:dogchat/ui/issue/issue.dart';
 import 'package:flutter/material.dart';
 import 'package:dogchat/constants.dart';
-import 'dart:html' as html;
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:dogchat/utils_stub.dart' if (dart.library.html) 'dart:html';
 
-Future<void> main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
-  if (html.window.location.pathname != null) {
-    id = Uri.parse(html.window.location.href).queryParameters["id"];
+  if (kIsWeb) {
+    id = Uri.parse(window.location.toString()).queryParameters["id"];
     print("ID:$id");
   }
   runApp(
@@ -22,6 +19,7 @@ Future<void> main() async {
       routes: <String, WidgetBuilder>{
         '/': (_) => new Home(),
         '/chat': (_) => new Chat(),
+        '/issue': (_) => new Issue(),
       },
     ),
   );

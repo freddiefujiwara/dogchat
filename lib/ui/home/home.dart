@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:dogchat/constants.dart';
@@ -22,15 +24,33 @@ class HomeState extends State<Home> {
   Future<void> _handleSignIn() async {
     try {
       await googleSignIn.signIn();
+      await Firebase.initializeApp();
+
+      final GoogleSignInAccount googleSignInAccount =
+          await googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      final UserCredential authResult =
+          await auth.signInWithCredential(credential);
+      final User user = authResult.user;
+
+      if (user != null) {
+        final User currentUser = auth.currentUser;
+        assert(user.uid == currentUser.uid);
+        print('signInWithGoogle succeeded: $user');
+      }
     } catch (error) {
       print(error);
     }
   }
 
   Widget _buildBody() {
-    if (loginUser != null && id != null) {
-      Navigator.of(context).pushNamed('/chat', arguments: id);
-    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
@@ -46,6 +66,14 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    if (loginUser != null) {
+      if (id != null) {
+        Navigator.of(context).pushNamed('/chat', arguments: id);
+      } else {
+        Navigator.of(context).pushNamed('/issue');
+      }
+      dispose();
+    }
     return Scaffold(
         appBar: AppBar(
           title: const Text('🐕 Dog Chat -ワンタイムチャット-'),

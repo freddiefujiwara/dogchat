@@ -36,7 +36,7 @@ dependencies:
   shared_preferences:
   flutter_linkify:
   url_launcher:
-  fluro:
+  random_string:
 
 dev_dependencies:
   flutter_test:

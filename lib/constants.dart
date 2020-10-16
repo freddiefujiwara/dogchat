@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -25,11 +26,11 @@ const dBorderRadiusLeft = BorderRadius.only(
 
 GoogleSignInAccount loginUser;
 
-GoogleSignIn googleSignIn = GoogleSignIn(
+final GoogleSignIn googleSignIn = GoogleSignIn(
   scopes: <String>[
     'email',
     'https://www.googleapis.com/auth/contacts.readonly',
   ],
 );
-
+final FirebaseAuth auth = FirebaseAuth.instance;
 String id;

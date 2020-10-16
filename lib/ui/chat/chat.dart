@@ -2,28 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dogchat/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:dogchat/ui/chat/message_stream.dart';
 
 final _fireStore = FirebaseFirestore.instance;
 
-class Chat extends StatefulWidget {
-  @override
-  _ChatState createState() => _ChatState();
-}
-
-class _ChatState extends State<Chat> {
+class Chat extends StatelessWidget {
   final messageController = TextEditingController();
   String message;
 
-  @override
-  void initState() {
-    googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
-      setState(() {
-        loginUser = account;
-      });
-    });
-    super.initState();
+  void _signOut(BuildContext context) {
+    googleSignIn.signOut();
+    loginUser = null;
+    id = null;
+    Navigator.of(context).popUntil(ModalRoute.withName('/'));
   }
 
   void _handlePost() {
@@ -44,21 +35,12 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     id = ModalRoute.of(context).settings.arguments;
     if (id == null || id.isEmpty) {
-      googleSignIn.signOut();
-      loginUser = null;
-      id = null;
-      Navigator.of(context).popUntil(ModalRoute.withName('/'));
+      this._signOut(context);
     }
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () {
-              googleSignIn.signOut();
-              loginUser = null;
-              id = null;
-              Navigator.of(context).popUntil(ModalRoute.withName('/'));
-            }),
+            icon: Icon(Icons.logout), onPressed: () => _signOut(context)),
         title: Text('🐕 Dog Chat -ワンタイムチャット-'),
         backgroundColor: Colors.lightBlueAccent,
         centerTitle: true,
