@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:dogchat/home.dart';
-import 'package:dogchat/chat.dart';
+import 'package:dogchat/ui/home/home.dart';
+import 'package:dogchat/ui/chat/chat.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +10,7 @@ Future<void> main() async {
   await Firebase.initializeApp();
   runApp(
     MaterialApp(
-      title: 'Google Sign In',
+      title: '🐕 Dog Chat -ワンタイムチャット-',
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/': (_) => new Home(),
