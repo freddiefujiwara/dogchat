@@ -13,8 +13,8 @@ const RESOURCES = {
 "privacy_policy.html": "a8d6e465f8eecd764c403f6132c51a4f",
 "main.dart.js": "aa013e7be7312fe11aff9746514e5bfb",
 "manifest.json": "d49f46c1da3c8eebdf5f262f490615b1",
-"index.html": "82c502c177f58bd4fd112091488efb89",
-"/": "82c502c177f58bd4fd112091488efb89",
+"index.html": "e1ff85d5a20ef294149522e080af904b",
+"/": "e1ff85d5a20ef294149522e080af904b",
 "icons/Icon-192.png": "c1bdfb6efe5105bfbb6811d3c781fcd1",
 "icons/Icon-512.png": "ef9acd6b6133e28ed1c092e311d6c032"
 };
