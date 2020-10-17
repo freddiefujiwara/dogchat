@@ -33291,8 +33291,9 @@ o=o.ev(0,"history")
 n=C.b.gN(p.gbJ().c.a)
 o=o.fD(0,n)
 E.dk(o,$.Mk())
-o.ed(0)}s=$.Mn()
-O.ld(s,s.gbJ().ev(0,"history")).B(0,P.a9(["id",H.b($.cI),"email",$.f0.a,"timestamp",this.a.a],t.X,t.z))},
+o.ed(0)}s=this.a
+if(s.a!=null){r=$.Mn()
+O.ld(r,r.gbJ().ev(0,"history")).B(0,P.a9(["id",H.b($.cI),"email",$.f0.a,"timestamp",s.a],t.X,t.z))}},
 $S:395}
 Y.lE.prototype={
 aG:function(){return new Y.te(C.l)}}
