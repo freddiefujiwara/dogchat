@@ -57,11 +57,13 @@ class MessageStream extends StatelessWidget {
                   _fireStore.collection("history").doc(doc.id).delete();
                 }
               }
-              _fireStore.collection('history').add({
-                'id': "$id",
-                'email': loginUser.email,
-                'timestamp': lastUpdate,
-              });
+              if (lastUpdate != null) {
+                _fireStore.collection('history').add({
+                  'id': "$id",
+                  'email': loginUser.email,
+                  'timestamp': lastUpdate,
+                });
+              }
             });
             return Expanded(
                 child: ListView(
