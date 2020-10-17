@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:dogchat/globals.dart';
+import 'package:dogchat/model/dog_chat_user.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,13 +15,14 @@ class HomeState extends State<Home> {
     super.initState();
     googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
       setState(() {
-        loginUser = account;
+        loginUser =
+            new DogChatUser(email: account.email, photoUrl: account.photoUrl);
       });
     });
     googleSignIn.signInSilently();
   }
 
-  Future<void> _handleSignIn() async {
+  Future<void> _handleGoogleSignIn() async {
     try {
       await googleSignIn.signIn();
 
@@ -54,10 +56,16 @@ class HomeState extends State<Home> {
       children: <Widget>[
         const Text("利用を開始するにはサインインが必要です"),
         FlatButton(
-            onPressed: _handleSignIn,
+            onPressed: _handleGoogleSignIn,
             padding: EdgeInsets.all(0.0),
             child: Image.network(
                 'https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png')),
+        FlatButton(
+            onPressed: () => WidgetsBinding.instance.addPostFrameCallback((_) {
+                  Navigator.of(context).pushNamed('/auth');
+                }),
+            padding: EdgeInsets.all(0.0),
+            child: Text("メールアドレスでサインイン"))
       ],
     );
   }

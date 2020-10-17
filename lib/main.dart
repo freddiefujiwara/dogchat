@@ -1,6 +1,7 @@
 import 'package:dogchat/ui/home/home.dart';
 import 'package:dogchat/ui/chat/chat.dart';
 import 'package:dogchat/ui/my/my.dart';
+import 'package:dogchat/ui/auth/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:dogchat/globals.dart';
@@ -23,6 +24,7 @@ Future<void> main() async {
         '/': (_) => new Home(),
         '/chat': (_) => new Chat(),
         '/my': (_) => new My(),
+        '/auth': (_) => new Auth(),
       },
     ),
   );

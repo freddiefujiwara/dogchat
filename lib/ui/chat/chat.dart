@@ -12,9 +12,9 @@ class Chat extends StatelessWidget {
   final messageController = TextEditingController();
   String message;
 
-  void _signOut(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      googleSignIn.signOut();
+  Future<void> _signOut(BuildContext context) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await googleSignIn.signOut();
       loginUser = null;
       id = null;
       Navigator.of(context).popUntil(ModalRoute.withName('/'));
@@ -45,7 +45,8 @@ class Chat extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.logout), onPressed: () => _signOut(context)),
+            icon: Icon(Icons.logout),
+            onPressed: () async => await _signOut(context)),
         title: const Text('🐕 チャットルーム'),
         backgroundColor: Colors.lightBlueAccent,
         centerTitle: true,
@@ -53,7 +54,7 @@ class Chat extends StatelessWidget {
           FavoriteStream(),
           IconButton(
               icon: Icon(Icons.person),
-              onPressed: () async {
+              onPressed: () {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   Navigator.of(context).pushNamed('/my');
                 });
