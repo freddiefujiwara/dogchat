@@ -41,7 +41,7 @@ class MessageStream extends StatelessWidget {
                 TextMsg: message.data()['text'],
                 Photo: message.data()['photo'],
                 TimeStamp: message.data()['timestamp'],
-                isMe: currentUser != messageSender,
+                isMe: currentUser == messageSender,
               );
               messageWidgets.add(messageBubble);
               lastUpdate = messageBubble.TimeStamp;
