@@ -16,4 +16,5 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 # Demo
-[try it](https://freddiefujiwara.com/dogchat/)
+- [try Web version](https://freddiefujiwara.com/dogchat/)
+- [try Android app version](https://freddiefujiwara.com/dogchat/)
