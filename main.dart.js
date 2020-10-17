@@ -33032,7 +33032,7 @@ L:function(a,b){var s,r=this,q=null,p=$.d0=T.Cz(b,t._).b.b
 if(p==null||p.length===0){r.pA(b)
 return M.df(q,q,q,q,q,q,q,q,q)}p=B.jL(q,L.lE(C.qq),new F.NO(r,b),q)
 s=t.Y
-return M.XI(E.MQ(H.d([new A.B9(q),B.jL(q,L.lE(C.xJ),new F.NP(b),q),B.jL(q,L.lE(C.xM),new F.NQ(),q)],s),C.re,!0,p,C.DX),Q.a9u(!0,T.h6(H.d([new T.Ck(q),M.df(q,T.a9t(H.d([T.a8D(Z.a9C(r.c,C.xT,!1,new F.NR(r),new F.NS(r))),N.hd(L.lE(C.xL),r.gU1(),q)],s),C.b0,C.aM,C.ah),q,q,C.uR,q,q,q,q)],s),C.bL,C.r7,C.ah),!0))}}
+return M.XI(E.MQ(H.d([new A.B9(q),B.jL(q,L.lE(C.xJ),new F.NP(b),q),B.jL(q,L.lE(C.xM),new F.NQ(),q)],s),C.re,!0,p,C.DW),Q.a9u(!0,T.h6(H.d([new T.Ck(q),M.df(q,T.a9t(H.d([T.a8D(Z.a9C(r.c,C.xT,!1,new F.NR(r),new F.NS(r))),N.hd(L.lE(C.xL),r.gU1(),q)],s),C.b0,C.aM,C.ah),q,q,C.uR,q,q,q,q)],s),C.bL,C.r7,C.ah),!0))}}
 F.NM.prototype={
 $1:function(a){return this.Ko(a)},
 Ko:function(a){var s=0,r=P.R(t.P),q=this,p,o
@@ -33222,7 +33222,7 @@ if($.hT!=null){P.cg("ID@home:"+H.b($.d0))
 s=$.d0
 r=$.aI
 if(s!=null)r.z$.push(new Y.Sd(b))
-else r.z$.push(new Y.Se(b))}return M.XI(E.MQ(q,q,!0,q,C.DW),new T.dv(C.ja,this.Q2(),q))}}
+else r.z$.push(new Y.Se(b))}return M.XI(E.MQ(q,q,!0,q,C.DX),new T.dv(C.ja,this.Q2(),q))}}
 Y.Sg.prototype={
 $1:function(a){this.a.aE(new Y.Sf(a))},
 $S:394}
@@ -62478,8 +62478,8 @@ C.DT=new R.dn(C.Bw,C.Ca,C.DH,C.Df,C.BQ,C.Bx,C.CF,C.Dq,C.DF,C.C0,C.DG,C.CN,C.Cm)
 C.u1=new U.Fs("TextWidthBasis.longestLine")
 C.DU=new L.iV("\ud83d\udc15 \u30b5\u30a4\u30f3\u30a4\u30f3",null,null,null,null,null,null)
 C.DV=new L.iV("\ud83d\udc15 \u30de\u30a4\u30da\u30fc\u30b8",null,null,null,null,null,null)
-C.DW=new L.iV("\ud83d\udc15 Dog Chat -\u30ef\u30f3\u30bf\u30a4\u30e0\u30c1\u30e3\u30c3\u30c8-",null,null,null,null,null,null)
-C.DX=new L.iV("\ud83d\udc15 \u30c1\u30e3\u30c3\u30c8\u30eb\u30fc\u30e0",null,null,null,null,null,null)
+C.DW=new L.iV("\ud83d\udc15 Chat room",null,null,null,null,null,null)
+C.DX=new L.iV("\ud83d\udc15 Dog Chat -\u30ef\u30f3\u30bf\u30a4\u30e0\u30c1\u30e3\u30c3\u30c8-",null,null,null,null,null,null)
 C.DY=new L.iV("\u5229\u7528\u3092\u958b\u59cb\u3059\u308b\u306b\u306f\u30b5\u30a4\u30f3\u30a4\u30f3\u304c\u5fc5\u8981\u3067\u3059",null,null,null,null,null,null)
 C.FV=new S.a0a("ThemeMode.system")
 C.DZ=new M.vN(null)
