@@ -15,8 +15,10 @@ class HomeState extends State<Home> {
     super.initState();
     googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
       setState(() {
-        loginUser =
-            new DogChatUser(email: account.email, photoUrl: account.photoUrl);
+        if (account != null && account.email != null) {
+          loginUser = new DogChatUser(
+              email: account.email, photoUrl: account.photoUrl ?? "");
+        }
       });
     });
     googleSignIn.signInSilently();
