@@ -18,12 +18,19 @@ jobs:
           channel: beta
       - name: "Install and Build  🔧"
         run: |
+          echo $SIGNING_KEY | base64 -d > android/app/key.jks
           flutter config --enable-web
           flutter pub get
           flutter test
-          flutter build apk
+          flutter build apk  --split-per-abi
           flutter build web
           cp build/app/outputs/flutter-apk/app-release.apk build/web/tmp
+        env:
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          ALIAS: ${{ secrets.ALIAS }}
+          KEY_PATH: key.jks
       - name: "Deploy apk 🚀"
         uses: actions/upload-artifact@v1
         with:
