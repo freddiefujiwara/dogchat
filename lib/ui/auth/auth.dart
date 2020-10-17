@@ -122,7 +122,7 @@ class _AuthState extends State<Auth> {
         child: new Column(
           children: <Widget>[
             new RaisedButton(
-              child: new Text('アカウントを作成'),
+              child: new Text('アカウントを登録'),
               onPressed: _createAccountPressed,
             ),
             new FlatButton(
@@ -174,11 +174,82 @@ class _AuthState extends State<Auth> {
     }
   }
 
-  void _createAccountPressed() {
-    print('The user wants to create an accoutn with $_email and $_password');
+  Future<void> _createAccountPressed() async {
+    try {
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+          email: _email, password: _password);
+      if (userCredential != null) {
+        loginUser = new DogChatUser(
+            email: userCredential.user.email,
+            photoUrl: userCredential.user.photoURL ?? "");
+        print('createUserWithEmailAndPassword succeeded: $userCredential');
+        print("ID@auth:$id");
+        if (id != null) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Navigator.of(context).pushNamed('/chat', arguments: id);
+          });
+        } else {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Navigator.of(context).pushNamed('/my');
+          });
+        }
+      }
+    } catch (error) {
+      print(error);
+      showDialog(
+          context: context,
+          child: AlertDialog(
+            title: Text("アカウント登録できませんでした"),
+            content: Text("メアド/パスワードご確認ください"),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("OK"),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ));
+    }
   }
 
-  void _passwordReset() {
-    print("The user wants a password reset request sent to $_email");
+  Future<void> _passwordReset() async {
+    if (this._email != null && this._email.length > 0) {
+      bool hasError = true;
+      try {
+        await auth.sendPasswordResetEmail(email: _email);
+        hasError = false;
+        showDialog(
+            context: context,
+            child: AlertDialog(
+              title: Text("パスワードリセットしました"),
+              content: Text("メールをご確認ください"),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("OK"),
+                  onPressed: () async =>
+                      WidgetsBinding.instance.addPostFrameCallback((_) async {
+                    Navigator.of(context).popUntil(ModalRoute.withName('/'));
+                  }),
+                ),
+              ],
+            ));
+      } catch (error) {
+        print(error);
+      }
+      if (!hasError) {
+        return;
+      }
+    }
+    showDialog(
+        context: context,
+        child: AlertDialog(
+          title: Text("パスワードリセットできませんでした"),
+          content: Text("メールアドレスをご確認ください"),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("OK"),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        ));
   }
 }
