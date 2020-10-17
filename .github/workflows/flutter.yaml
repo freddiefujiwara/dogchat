@@ -21,16 +21,16 @@ jobs:
           flutter config --enable-web
           flutter pub get
           flutter test
-          flutter build web
           flutter build apk
+          flutter build web
+      - name: "Deploy apk 🚀"
+        uses: actions/upload-artifact@v1
+        with:
+          name: release-apk
+          path: build/web/tmp/app-release.apk
       - name: "Deploy to gh-pages 🚀"
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           BRANCH: gh-pages
           FOLDER: build/web
-      - name: "Deploy apk 🚀"
-        uses: actions/upload-artifact@v1
-        with:
-          name: release-apk
-          path: build/app/outputs/apk/release/app-release.apk
