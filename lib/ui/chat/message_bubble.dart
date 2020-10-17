@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:dogchat/globals.dart';
+import 'package:intl/intl.dart';
 
 class MessageBubble extends StatelessWidget {
   MessageBubble(
@@ -66,7 +67,7 @@ class MessageBubble extends StatelessWidget {
             ),
           ),
           Text(
-              '${TimeStamp == null ? "" : DateTime.parse(TimeStamp.toDate().toString())}'),
+              '${TimeStamp == null ? "" : new DateFormat.yMd().add_jm().format(DateTime.parse(TimeStamp.toDate().toString()))}'),
         ],
       ),
     );

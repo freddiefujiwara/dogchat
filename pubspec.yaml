@@ -37,6 +37,7 @@ dependencies:
   flutter_linkify:
   url_launcher:
   random_string:
+  intl:
 
 dev_dependencies:
   flutter_test:
