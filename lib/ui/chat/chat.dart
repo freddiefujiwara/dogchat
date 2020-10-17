@@ -47,7 +47,7 @@ class Chat extends StatelessWidget {
         leading: IconButton(
             icon: Icon(Icons.logout),
             onPressed: () async => await _signOut(context)),
-        title: const Text('🐕 チャットルーム'),
+        title: const Text('🐕 Chat room'),
         backgroundColor: Colors.lightBlueAccent,
         centerTitle: true,
         actions: [
