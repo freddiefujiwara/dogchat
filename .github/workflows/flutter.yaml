@@ -23,11 +23,12 @@ jobs:
           flutter test
           flutter build apk
           flutter build web
+          cp build/app/outputs/flutter-apk/app-release.apk build/web/tmp
       - name: "Deploy apk 🚀"
         uses: actions/upload-artifact@v1
         with:
           name: release-apk
-          path: build/web/tmp/app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
       - name: "Deploy to gh-pages 🚀"
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
