@@ -36,20 +36,15 @@ class MessageStream extends StatelessWidget {
             for (var message in messages) {
               final messageSender = message.data()['sender'];
               final currentUser = loginUser.email;
-              bool val;
-              if (currentUser != messageSender)
-                val = false;
-              else
-                val = true;
-              final messageBubbler = MessageBubble(
+              final messageBubble = MessageBubble(
                 Sender: messageSender,
                 TextMsg: message.data()['text'],
                 Photo: message.data()['photo'],
                 TimeStamp: message.data()['timestamp'],
-                isMe: val,
+                isMe: currentUser != messageSender,
               );
-              messageWidgets.add(messageBubbler);
-              lastUpdate = messageBubbler.TimeStamp;
+              messageWidgets.add(messageBubble);
+              lastUpdate = messageBubble.TimeStamp;
             }
             _fireStore
                 .collection('history')
@@ -59,19 +54,8 @@ class MessageStream extends StatelessWidget {
                 .then((snapshot) {
               if (snapshot.docs.length > 0) {
                 for (var doc in snapshot.docs) {
-                  _fireStore
-                      .collection("history")
-                      .doc(doc.id)
-                      .delete()
-                      .then((_) {
-                    _fireStore.collection('history').add({
-                      'id': "$id",
-                      'email': loginUser.email,
-                      'timestamp': lastUpdate,
-                    });
-                  });
+                  _fireStore.collection("history").doc(doc.id).delete();
                 }
-                return;
               }
               _fireStore.collection('history').add({
                 'id': "$id",
