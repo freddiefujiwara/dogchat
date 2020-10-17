@@ -17,7 +17,6 @@ class MessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(Photo);
     List<Widget> sendersInfo = [
       Container(
         width: 30,

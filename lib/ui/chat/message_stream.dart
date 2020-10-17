@@ -32,6 +32,7 @@ class MessageStream extends StatelessWidget {
           } else {
             final messages = snapshot.data.docs;
             List<MessageBubble> messageWidgets = [];
+            Timestamp lastUpdate = Timestamp.now();
             for (var message in messages) {
               final messageSender = message.data()['sender'];
               final currentUser = loginUser.email;
@@ -48,7 +49,36 @@ class MessageStream extends StatelessWidget {
                 isMe: val,
               );
               messageWidgets.add(messageBubbler);
+              lastUpdate = messageBubbler.TimeStamp;
             }
+            _fireStore
+                .collection('history')
+                .where("id", isEqualTo: id)
+                .where("email", isEqualTo: loginUser.email)
+                .get()
+                .then((snapshot) {
+              if (snapshot.docs.length > 0) {
+                for (var doc in snapshot.docs) {
+                  _fireStore
+                      .collection("history")
+                      .doc(doc.id)
+                      .delete()
+                      .then((_) {
+                    _fireStore.collection('history').add({
+                      'id': "$id",
+                      'email': loginUser.email,
+                      'timestamp': lastUpdate,
+                    });
+                  });
+                }
+                return;
+              }
+              _fireStore.collection('history').add({
+                'id': "$id",
+                'email': loginUser.email,
+                'timestamp': lastUpdate,
+              });
+            });
             return Expanded(
                 child: ListView(
               reverse: true,
