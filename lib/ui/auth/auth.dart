@@ -145,7 +145,8 @@ class _AuthState extends State<Auth> {
         loginUser = new DogChatUser(
             email: userCredential.user.email,
             photoUrl: userCredential.user.photoURL ?? "");
-        print('signInWithGoogle succeeded: $userCredential');
+        print('signInWithEmailAndPassword succeeded: $userCredential');
+        print("ID@auth:$id");
         if (id != null) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             Navigator.of(context).pushNamed('/chat', arguments: id);

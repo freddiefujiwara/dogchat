@@ -73,6 +73,7 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     if (loginUser != null) {
+      print("ID@home:$id");
       if (id != null) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           Navigator.of(context).pushNamed('/chat', arguments: id);
