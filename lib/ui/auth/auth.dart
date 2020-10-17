@@ -143,12 +143,18 @@ class _AuthState extends State<Auth> {
           email: _email, password: _password);
       if (userCredential != null) {
         loginUser = new DogChatUser(
-            email: userCredential.user.email.toString(),
-            photoUrl: userCredential.user.photoURL.toString());
+            email: userCredential.user.email,
+            photoUrl: userCredential.user.photoURL ?? "");
         print('signInWithGoogle succeeded: $userCredential');
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          Navigator.of(context).pushNamed('/my');
-        });
+        if (id != null) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Navigator.of(context).pushNamed('/chat', arguments: id);
+          });
+        } else {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Navigator.of(context).pushNamed('/my');
+          });
+        }
       }
     } catch (error) {
       print(error);

@@ -16,6 +16,7 @@ class MessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(Photo);
     List<Widget> sendersInfo = [
       Container(
         width: 30,
@@ -23,8 +24,9 @@ class MessageBubble extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
-              image: NetworkImage(this.Photo ??
-                  'https://freddiefujiwara.com/dogchat/favicon.png'),
+              image: NetworkImage(this.Photo.isEmpty
+                  ? 'https://freddiefujiwara.com/dogchat/favicon.png'
+                  : this.Photo),
               fit: BoxFit.fill),
         ),
       ),
