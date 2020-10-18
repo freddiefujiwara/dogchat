@@ -50,7 +50,8 @@ class Chat extends StatelessWidget {
       if (pickedFile != null) {
         _fireStore.collection('messages').add({
           'id': "$id",
-          'text': base64.encode(List<int>.from(await pickedFile.readAsBytes())),
+          'text':
+              "data:image/jpeg;base64,${base64.encode(List<int>.from(await pickedFile.readAsBytes()))}",
           'sender': loginUser.email,
           'photo': loginUser.photoUrl,
           'timestamp': FieldValue.serverTimestamp(),

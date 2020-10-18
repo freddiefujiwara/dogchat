@@ -19,6 +19,12 @@ class MessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String name = Sender.replaceAll(RegExp(r'@.*$'), '')
+        .replaceAll(RegExp(r'\.'), ' ')
+        .split(" ")
+        .map((orig) {
+      return orig.substring(0, 1).toUpperCase() + orig.substring(1);
+    }).join(" ");
     List<Widget> sendersInfo = [
       Container(
         width: 30,
@@ -33,18 +39,22 @@ class MessageBubble extends StatelessWidget {
         ),
       ),
       Text(
-        "$Sender",
+        "$name",
         style: TextStyle(color: Colors.black87, fontSize: 12),
       ),
     ];
-    String text = TextMsg;
     bool isImage = false;
     Image image;
-    try {
-      image = Image.memory(Uint8List.fromList(base64.decode(text)));
-      isImage = true;
-    } catch (e) {
-      print(e);
+    if (new RegExp(
+            r'^data:image/jpeg;base64,(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$')
+        .hasMatch(TextMsg)) {
+      try {
+        image = Image.memory(Uint8List.fromList(base64
+            .decode(TextMsg.replaceFirst("data:image/jpeg;base64,", ""))));
+        isImage = true;
+      } catch (e) {
+        print(e);
+      }
     }
     return Padding(
       padding: EdgeInsets.all(10.0),
@@ -64,7 +74,7 @@ class MessageBubble extends StatelessWidget {
                   color: isMe ? Colors.blueAccent : Colors.greenAccent,
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                    child: Linkify(
+                    child: SelectableLinkify(
                       onOpen: (link) async {
                         if (await canLaunch(link.url)) {
                           await launch(link.url);
@@ -72,7 +82,7 @@ class MessageBubble extends StatelessWidget {
                           throw 'Could not launch $link';
                         }
                       },
-                      text: text,
+                      text: TextMsg,
                       style: TextStyle(color: Colors.black87, fontSize: 12),
                       linkStyle: TextStyle(color: Colors.red, fontSize: 12),
                     ),
