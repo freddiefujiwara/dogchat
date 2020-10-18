@@ -49,8 +49,9 @@ class MessageBubble extends StatelessWidget {
             r'^data:image/jpeg;base64,(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$')
         .hasMatch(TextMsg)) {
       try {
-        image = Image.memory(Uint8List.fromList(base64
-            .decode(TextMsg.replaceFirst("data:image/jpeg;base64,", ""))));
+        image = Image.memory(Uint8List.fromList(base64.decode(
+            TextMsg.replaceFirst(
+                new RegExp(r'^data:image/jpeg;base64,'), ""))));
         isImage = true;
       } catch (e) {
         print(e);
