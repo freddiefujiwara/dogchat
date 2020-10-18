@@ -23,8 +23,9 @@ jobs:
           flutter pub get
           flutter test
           flutter build apk  --split-per-abi
+          ls build/app/outputs/flutter-apk/*.apk
           flutter build web
-          cp build/app/outputs/flutter-apk/app-*-release.apk build/web/tmp/app-release.apk
+          cp build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk build/web/tmp/app-release.apk
         env:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
