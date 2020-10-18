@@ -50,8 +50,7 @@ class MessageBubble extends StatelessWidget {
         .hasMatch(TextMsg)) {
       try {
         image = Image.memory(Uint8List.fromList(base64.decode(
-            TextMsg.replaceFirst(
-                new RegExp(r'^data:image/jpeg;base64,'), ""))));
+            TextMsg.replaceAll(new RegExp(r'^data:image/jpeg;base64,'), ""))));
         isImage = true;
       } catch (e) {
         print(e);
