@@ -17,4 +17,4 @@ samples, guidance on mobile development, and a full API reference.
 
 # Demo
 - [try Web version](https://freddiefujiwara.com/dogchat/)
-- [try Android app version](https://freddiefujiwara.com/dogchat/tmp/app-release.apk)
+- [try Android app version](https://freddiefujiwara.com/dogchat/apks/app-release.apk)
