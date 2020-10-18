@@ -1,3 +1,4 @@
+[![Flutter CI](https://github.com/freddiefujiwara/dogchat/workflows/Flutter%20CI/badge.svg)](https://github.com/freddiefujiwara/dogchat/actions)
 # dogchat
 
 Simple one time chat app
