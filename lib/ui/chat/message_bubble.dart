@@ -1,4 +1,6 @@
+import 'dart:typed_data';
 import 'dart:ui';
+import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -35,6 +37,15 @@ class MessageBubble extends StatelessWidget {
         style: TextStyle(color: Colors.black87, fontSize: 12),
       ),
     ];
+    String text = TextMsg;
+    bool isImage = false;
+    Image image;
+    try {
+      image = Image.memory(Uint8List.fromList(base64.decode(text)));
+      isImage = true;
+    } catch (e) {
+      print(e);
+    }
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Column(
@@ -45,26 +56,28 @@ class MessageBubble extends StatelessWidget {
               mainAxisAlignment:
                   isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
               children: isMe ? sendersInfo.reversed.toList() : sendersInfo),
-          Material(
-            borderRadius: isMe ? dBorderRadiusRight : dBorderRadiusLeft,
-            elevation: 10,
-            color: isMe ? Colors.blueAccent : Colors.greenAccent,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              child: Linkify(
-                onOpen: (link) async {
-                  if (await canLaunch(link.url)) {
-                    await launch(link.url);
-                  } else {
-                    throw 'Could not launch $link';
-                  }
-                },
-                text: '$TextMsg',
-                style: TextStyle(color: Colors.black87, fontSize: 12),
-                linkStyle: TextStyle(color: Colors.red, fontSize: 12),
-              ),
-            ),
-          ),
+          isImage
+              ? image
+              : Material(
+                  borderRadius: isMe ? dBorderRadiusRight : dBorderRadiusLeft,
+                  elevation: 10,
+                  color: isMe ? Colors.blueAccent : Colors.greenAccent,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    child: Linkify(
+                      onOpen: (link) async {
+                        if (await canLaunch(link.url)) {
+                          await launch(link.url);
+                        } else {
+                          throw 'Could not launch $link';
+                        }
+                      },
+                      text: text,
+                      style: TextStyle(color: Colors.black87, fontSize: 12),
+                      linkStyle: TextStyle(color: Colors.red, fontSize: 12),
+                    ),
+                  ),
+                ),
           Text(
               '${TimeStamp == null ? "" : new DateFormat.yMd().add_jm().format(DateTime.parse(TimeStamp.toDate().toString()))}'),
         ],

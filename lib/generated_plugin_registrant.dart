@@ -10,6 +10,7 @@ import 'package:firebase_analytics_web/firebase_analytics_web.dart';
 import 'package:firebase_auth_web/firebase_auth_web.dart';
 import 'package:firebase_core_web/firebase_core_web.dart';
 import 'package:google_sign_in_web/google_sign_in_web.dart';
+import 'package:image_picker_for_web/image_picker_for_web.dart';
 import 'package:shared_preferences_web/shared_preferences_web.dart';
 import 'package:url_launcher_web/url_launcher_web.dart';
 
@@ -22,6 +23,7 @@ void registerPlugins(PluginRegistry registry) {
   FirebaseAuthWeb.registerWith(registry.registrarFor(FirebaseAuthWeb));
   FirebaseCoreWeb.registerWith(registry.registrarFor(FirebaseCoreWeb));
   GoogleSignInPlugin.registerWith(registry.registrarFor(GoogleSignInPlugin));
+  ImagePickerPlugin.registerWith(registry.registrarFor(ImagePickerPlugin));
   SharedPreferencesPlugin.registerWith(registry.registrarFor(SharedPreferencesPlugin));
   UrlLauncherPlugin.registerWith(registry.registrarFor(UrlLauncherPlugin));
   registry.registerMessageHandler();

@@ -1,15 +1,18 @@
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dogchat/globals.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dogchat/ui/chat/message_stream.dart';
 import 'package:dogchat/ui/chat/favorite_stream.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final _fireStore = FirebaseFirestore.instance;
 
 class Chat extends StatelessWidget {
   final messageController = TextEditingController();
+  final ImagePicker _picker = ImagePicker();
   String message;
 
   Future<void> _signOut(BuildContext context) async {
@@ -33,6 +36,29 @@ class Chat extends StatelessWidget {
       'timestamp': FieldValue.serverTimestamp(),
     });
     this.messageController.clear();
+  }
+
+  Future<void> _handleImagePost() async {
+    this.messageController.clear();
+    try {
+      final pickedFile = await _picker.getImage(
+        source: ImageSource.gallery,
+        maxWidth: 300,
+        maxHeight: 300,
+        imageQuality: 80,
+      );
+      if (pickedFile != null) {
+        _fireStore.collection('messages').add({
+          'id': "$id",
+          'text': base64.encode(List<int>.from(await pickedFile.readAsBytes())),
+          'sender': loginUser.email,
+          'photo': loginUser.photoUrl,
+          'timestamp': FieldValue.serverTimestamp(),
+        });
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -76,6 +102,9 @@ class Chat extends StatelessWidget {
               decoration: dMessageContainerDecoration,
               child: Row(
                 children: <Widget>[
+                  IconButton(
+                      onPressed: this._handleImagePost,
+                      icon: Icon(Icons.photo)),
                   Expanded(
                     child: TextField(
                       controller: messageController,
@@ -89,8 +118,8 @@ class Chat extends StatelessWidget {
                       decoration: dMessageTextFieldDecoration,
                     ),
                   ),
-                  FlatButton(
-                      onPressed: this._handlePost, child: Icon(Icons.send)),
+                  IconButton(
+                      onPressed: this._handlePost, icon: Icon(Icons.send)),
                 ],
               ),
             ),
