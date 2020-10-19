@@ -45,19 +45,15 @@ class MessageBubble extends StatelessWidget {
     ];
     bool isImage = false;
     Image image;
-    /*
-    if (new RegExp(
-            //         r'^data:image/[a-z]+;base64,(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$')
-            r'^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$')
-        .hasMatch(TextMsg)) { */
-    try {
-      String text = TextMsg; //TextMsg.split(',').last;
-      image = Image.memory(Uint8List.fromList(base64.decode(text)));
-      isImage = true;
-    } catch (e) {
-      print(e);
+    if (RegExp(r'^data:image/[a-z]+;base64,').hasMatch(TextMsg)) {
+      try {
+        String text = TextMsg.split(',').last;
+        image = Image.memory(Uint8List.fromList(base64.decode(text)));
+        isImage = true;
+      } catch (e) {
+        print(e);
+      }
     }
-    // }
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Column(
