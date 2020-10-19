@@ -45,11 +45,10 @@ class MessageBubble extends StatelessWidget {
     bool isImage = false;
     Image image;
     if (new RegExp(
-            r'^data:image/jpeg;base64,(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$')
+            r'^data:image/[a-z]+;base64,(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$')
         .hasMatch(TextMsg)) {
       try {
-        image = Image.memory(base64.decode(TextMsg.replaceAll(r'/\n/', '')
-            .replaceAll(new RegExp(r'^data:image/jpeg;base64,'), '')));
+        image = Image.memory(base64.decode(TextMsg.split(',').last));
         isImage = true;
       } catch (e) {
         print(e);
