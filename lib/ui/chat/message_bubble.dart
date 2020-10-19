@@ -42,12 +42,10 @@ class MessageBubble extends StatelessWidget {
         style: TextStyle(color: Colors.black87, fontSize: 12),
       ),
     ];
-    bool isImage = false;
     Image image;
     if (RegExp(r'^data:image/[a-z]+;base64,').hasMatch(TextMsg)) {
       try {
         image = Image.memory(base64.decode(TextMsg.split(',').last));
-        isImage = true;
       } catch (e) {
         print(e);
       }
@@ -62,7 +60,7 @@ class MessageBubble extends StatelessWidget {
               mainAxisAlignment:
                   isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
               children: isMe ? sendersInfo.reversed.toList() : sendersInfo),
-          isImage
+          image != null
               ? image
               : Material(
                   borderRadius: isMe ? dBorderRadiusRight : dBorderRadiusLeft,
