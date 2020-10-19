@@ -47,6 +47,7 @@ class MessageBubble extends StatelessWidget {
       try {
         image = Image.memory(base64.decode(TextMsg.split(',').last));
       } catch (e) {
+        image = null;
         print(e);
       }
     }
