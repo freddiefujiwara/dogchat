@@ -3,13 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dogchat/globals.dart';
 import 'package:dogchat/ui/chat/message_bubble.dart';
 
-final _fireStore = FirebaseFirestore.instance;
-
 class MessageStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: _fireStore
+        stream: fireStore
             .collection('messages')
             .where('id', isEqualTo: "$id")
             .orderBy('timestamp', descending: false)
@@ -46,7 +44,7 @@ class MessageStream extends StatelessWidget {
               messageWidgets.add(messageBubble);
               lastUpdate = messageBubble.TimeStamp;
             }
-            _fireStore
+            fireStore
                 .collection('history')
                 .where("id", isEqualTo: id)
                 .where("email", isEqualTo: loginUser.email)
@@ -54,11 +52,11 @@ class MessageStream extends StatelessWidget {
                 .then((snapshot) {
               if (snapshot.docs.length > 0) {
                 for (var doc in snapshot.docs) {
-                  _fireStore.collection("history").doc(doc.id).delete();
+                  fireStore.collection("history").doc(doc.id).delete();
                 }
               }
               if (lastUpdate != null) {
-                _fireStore.collection('history').add({
+                fireStore.collection('history').add({
                   'id': "$id",
                   'email': loginUser.email,
                   'timestamp': lastUpdate,

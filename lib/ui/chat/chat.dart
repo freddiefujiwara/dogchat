@@ -8,29 +8,34 @@ import 'package:dogchat/ui/chat/favorite_stream.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final _fireStore = FirebaseFirestore.instance;
+import '../../globals.dart';
+
+String message;
 
 class Chat extends StatelessWidget {
   final messageController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
-  String message;
 
   Future<void> _signOut(BuildContext context) async {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await googleSignIn.signOut();
       loginUser = null;
       id = null;
-      Navigator.of(context).popUntil(ModalRoute.withName('/'));
+      print("ID@Chat._signOut:$id");
+      await googleSignIn.signOut();
+      await auth.signOut();
+      //Navigator.of(context).popUntil(ModalRoute.withName('/'));
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('/', ModalRoute.withName('/'));
     });
   }
 
   void _handlePost() {
-    if (this.message == null || this.message.length == 0) {
+    if (message == null || message.length == 0) {
       return;
     }
-    _fireStore.collection('messages').add({
+    fireStore.collection('messages').add({
       'id': "$id",
-      'text': this.message,
+      'text': message,
       'sender': loginUser.email,
       'photo': loginUser.photoUrl,
       'timestamp': FieldValue.serverTimestamp(),
@@ -48,7 +53,7 @@ class Chat extends StatelessWidget {
         imageQuality: 80,
       );
       if (pickedFile != null) {
-        _fireStore.collection('messages').add({
+        fireStore.collection('messages').add({
           'id': "$id",
           'text':
               "data:image/jpeg;base64,${base64.encode(List<int>.from(await pickedFile.readAsBytes()))}",
@@ -65,7 +70,8 @@ class Chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     id = ModalRoute.of(context).settings.arguments;
-    if (id == null || id.isEmpty) {
+    print("ID@Chat.build:$id");
+    if (id == null || id.isEmpty || loginUser == null) {
       this._signOut(context);
       return Container();
     }
@@ -110,10 +116,10 @@ class Chat extends StatelessWidget {
                     child: TextField(
                       controller: messageController,
                       onChanged: (value) {
-                        this.message = value;
+                        message = value;
                       },
                       onSubmitted: (String value) {
-                        this.message = value;
+                        message = value;
                         this._handlePost();
                       },
                       decoration: dMessageTextFieldDecoration,

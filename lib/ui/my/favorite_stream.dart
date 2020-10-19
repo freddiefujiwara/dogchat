@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dogchat/globals.dart';
 
-final _fireStore = FirebaseFirestore.instance;
-
 class FavoriteStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: _fireStore
+        stream: fireStore
             .collection('favorites')
             .where('email', isEqualTo: "${loginUser.email}")
             .snapshots(),

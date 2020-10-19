@@ -4,11 +4,13 @@ import 'package:dogchat/globals.dart';
 import 'package:dogchat/ui/my/favorite_stream.dart';
 
 class My extends StatelessWidget {
-  void _signOut(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      googleSignIn.signOut();
+  Future<void> _signOut(BuildContext context) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       loginUser = null;
       id = null;
+      print("ID@my:$id");
+      await googleSignIn.signOut();
+      await auth.signOut();
       Navigator.of(context).popUntil(ModalRoute.withName('/'));
     });
   }
@@ -18,7 +20,8 @@ class My extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-              icon: Icon(Icons.logout), onPressed: () => _signOut(context)),
+              icon: Icon(Icons.logout),
+              onPressed: () async => _signOut(context)),
           title: const Text('🐕 マイページ'),
           centerTitle: true,
         ),
