@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'dart:ui';
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -47,8 +46,7 @@ class MessageBubble extends StatelessWidget {
     Image image;
     if (RegExp(r'^data:image/[a-z]+;base64,').hasMatch(TextMsg)) {
       try {
-        String text = TextMsg.split(',').last;
-        image = Image.memory(Uint8List.fromList(base64.decode(text)));
+        image = Image.memory(base64.decode(TextMsg.split(',').last));
         isImage = true;
       } catch (e) {
         print(e);
