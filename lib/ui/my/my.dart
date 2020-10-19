@@ -11,7 +11,8 @@ class My extends StatelessWidget {
       print("ID@my:$id");
       await googleSignIn.signOut();
       await auth.signOut();
-      Navigator.of(context).popUntil(ModalRoute.withName('/'));
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
     });
   }
 

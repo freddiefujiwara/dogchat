@@ -8,8 +8,6 @@ import 'package:dogchat/ui/chat/favorite_stream.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../globals.dart';
-
 String message;
 
 class Chat extends StatelessWidget {
@@ -23,9 +21,8 @@ class Chat extends StatelessWidget {
       print("ID@Chat._signOut:$id");
       await googleSignIn.signOut();
       await auth.signOut();
-      //Navigator.of(context).popUntil(ModalRoute.withName('/'));
       Navigator.of(context)
-          .pushNamedAndRemoveUntil('/', ModalRoute.withName('/'));
+          .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
     });
   }
 
@@ -40,10 +37,12 @@ class Chat extends StatelessWidget {
       'photo': loginUser.photoUrl,
       'timestamp': FieldValue.serverTimestamp(),
     });
+    message = null;
     this.messageController.clear();
   }
 
   Future<void> _handleImagePost() async {
+    message = null;
     this.messageController.clear();
     try {
       final pickedFile = await _picker.getImage(
