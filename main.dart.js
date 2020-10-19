@@ -33704,32 +33704,31 @@ $C:"$0",
 $R:0,
 $S:159}
 Z.u8.prototype={
-L:function(a,b){var s,r,q,p,o,n,m,l,k,j,i=this,h=null,g=i.d,f=P.cI("@.*$",!0)
-g.toString
-g=H.a8V(g,f,"")
-f=P.cI("\\.",!0)
-p=new H.am(H.d(H.a8V(g,f," ").split(" "),t.s),new Z.UJ(),t.Ie).aH(0," ")
-g=i.e
-f=t.Y
-o=H.d([M.dh(h,h,h,h,new S.dW(h,new X.AV(new D.ma(g.length===0?"https://freddiefujiwara.com/dogchat/favicon.png":g,1),C.pG),h,h,h,h,C.bm),30,h,h,30),L.by(p,h,h,h,A.mF(h,h,C.D,h,h,h,h,h,h,h,h,12,h,h,h,h,!0,h,h,h,h,h,h),h)],f)
-s=!1
-r=null
-g=P.cI("^data:image/[a-z]+;base64,",!0)
-n=i.c
-if(typeof n!="string")H.i(H.aZ(n))
-if(g.b.test(n))try{r=new U.nY(M.afc(h,h,new M.k3(C.vd.cB(C.b.gN(n.split(","))),1)),h)
-s=!0}catch(m){q=H.T(m)
-P.ce(q)}g=i.r
-l=g?C.mj:C.jl
-k=g?C.i3:C.aO
-if(g){j=t.OB
-j=P.a1(new H.bF(o,j),!0,j.j("aI.E"))}else j=o
-k=T.aaA(j,C.b1,k,C.ag)
-if(s)g=r
-else{j=g?C.uO:C.uP
-g=g?C.en:C.zH
-g=M.CI(C.a_,j,new T.cQ(new V.ax(20,10,20,10),new F.F8(n,new Z.UK(),A.mF(h,h,C.D,h,h,h,h,h,h,h,h,12,h,h,h,h,!0,h,h,h,h,h,h),A.mF(h,h,C.zJ,h,h,h,h,h,h,h,h,12,h,h,h,h,!0,h,h,h,h,h,h),h),h),C.R,g,10,h,h,h,h,C.da)}n=i.f
-return new T.cQ(new V.ax(10,10,10,10),T.ha(H.d([k,g,L.by(n==null?"":T.amI().nQ("jm").tf(P.amP(P.adp(n.gJR()).i(0))),h,h,h,h,h)],f),l,C.aO,C.ag),h)}}
+L:function(a,b){var s,r,q,p,o,n,m,l,k,j=this,i=null,h=j.d,g=P.cI("@.*$",!0)
+h.toString
+h=H.a8V(h,g,"")
+g=P.cI("\\.",!0)
+q=new H.am(H.d(H.a8V(h,g," ").split(" "),t.s),new Z.UJ(),t.Ie).aH(0," ")
+h=j.e
+g=t.Y
+p=H.d([M.dh(i,i,i,i,new S.dW(i,new X.AV(new D.ma(h.length===0?"https://freddiefujiwara.com/dogchat/favicon.png":h,1),C.pG),i,i,i,i,C.bm),30,i,i,30),L.by(q,i,i,i,A.mF(i,i,C.D,i,i,i,i,i,i,i,i,12,i,i,i,i,!0,i,i,i,i,i,i),i)],g)
+s=null
+h=P.cI("^data:image/[a-z]+;base64,",!0)
+o=j.c
+if(typeof o!="string")H.i(H.aZ(o))
+if(h.b.test(o))try{s=new U.nY(M.afc(i,i,new M.k3(C.vd.cB(C.b.gN(o.split(","))),1)),i)}catch(n){r=H.T(n)
+s=null
+P.ce(r)}h=j.r
+m=h?C.mj:C.jl
+l=h?C.i3:C.aO
+if(h){k=t.OB
+k=P.a1(new H.bF(p,k),!0,k.j("aI.E"))}else k=p
+l=T.aaA(k,C.b1,l,C.ag)
+if(s!=null)h=s
+else{k=h?C.uO:C.uP
+h=h?C.en:C.zH
+h=M.CI(C.a_,k,new T.cQ(new V.ax(20,10,20,10),new F.F8(o,new Z.UK(),A.mF(i,i,C.D,i,i,i,i,i,i,i,i,12,i,i,i,i,!0,i,i,i,i,i,i),A.mF(i,i,C.zJ,i,i,i,i,i,i,i,i,12,i,i,i,i,!0,i,i,i,i,i,i),i),i),C.R,h,10,i,i,i,i,C.da)}o=j.f
+return new T.cQ(new V.ax(10,10,10,10),T.ha(H.d([l,h,L.by(o==null?"":T.amI().nQ("jm").tf(P.amP(P.adp(o.gJR()).i(0))),i,i,i,i,i)],g),m,C.aO,C.ag),i)}}
 Z.UJ.prototype={
 $1:function(a){return J.bI(a).S(a,0,1).toUpperCase()+C.c.by(a,1)},
 $S:131}
