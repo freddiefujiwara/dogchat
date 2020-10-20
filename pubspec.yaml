@@ -35,7 +35,7 @@ dependencies:
   cloud_firestore:
   shared_preferences:
   flutter_linkify:
-  url_launcher:
+  url_launcher: ^5.7.5
   random_string:
   intl:
   provider:
