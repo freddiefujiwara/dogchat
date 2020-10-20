@@ -35,8 +35,8 @@ dependencies:
   cloud_firestore:
   shared_preferences:
   url_launcher:
-  flutter_linkify:
   url_launcher_platform_interface: ^1.0.8 # because of https://github.com/flutter/plugins/commit/9560b2ac8eaf23bc5568aafca229de2ef83dac5e#comments
+  flutter_linkify:
   random_string:
   intl:
   provider:
