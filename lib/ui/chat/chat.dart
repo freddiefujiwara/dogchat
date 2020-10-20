@@ -27,7 +27,7 @@ class Chat extends StatelessWidget {
   }
 
   void _handlePost() {
-    if (message == null || message.length == 0) {
+    if (message == null || message.trim().length == 0) {
       return;
     }
     fireStore.collection('messages').add({
@@ -118,7 +118,7 @@ class Chat extends StatelessWidget {
                         message = value;
                       },
                       onSubmitted: (String value) {
-                        message = value;
+                        message = value.trim();
                         this._handlePost();
                       },
                       decoration: dMessageTextFieldDecoration,
