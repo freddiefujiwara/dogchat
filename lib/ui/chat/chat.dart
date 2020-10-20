@@ -122,6 +122,8 @@ class Chat extends StatelessWidget {
                         this._handlePost();
                       },
                       decoration: dMessageTextFieldDecoration,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
                     ),
                   ),
                   IconButton(
