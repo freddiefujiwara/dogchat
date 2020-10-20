@@ -13,9 +13,11 @@ Future<void> main() async {
 
   await Firebase.initializeApp();
   if (kIsWeb) {
+    isPCWeb = RegExp(r'^(Win|Mac)').hasMatch(window.navigator.platform);
     id = Uri.parse(window.location.toString()).queryParameters["id"];
-    print("ID:$id");
+    print("isPCWeb:$isPCWeb:${window.navigator.platform}");
   }
+  print("ID:$id");
   runApp(
     MaterialApp(
       title: '🐕 Dog Chat -ワンタイムチャット-',

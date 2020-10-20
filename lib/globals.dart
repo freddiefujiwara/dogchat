@@ -38,3 +38,4 @@ final GoogleSignIn googleSignIn = GoogleSignIn(
 final FirebaseAuth auth = FirebaseAuth.instance;
 final fireStore = FirebaseFirestore.instance;
 String id;
+bool isPCWeb = false;
