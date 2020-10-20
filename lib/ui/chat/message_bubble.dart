@@ -60,6 +60,9 @@ class MessageBubble extends StatelessWidget {
     }
     return GestureDetector(
         onLongPress: () {
+          if (!isMe) {
+            return;
+          }
           showDialog(
               context: context,
               child: AlertDialog(
