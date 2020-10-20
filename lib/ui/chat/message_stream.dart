@@ -32,17 +32,19 @@ class MessageStream extends StatelessWidget {
             List<MessageBubble> messageWidgets = [];
             Timestamp lastUpdate = Timestamp.now();
             for (var message in messages) {
-              final messageSender = message.data()['sender'];
+              final data = message.data();
+              final messageSender = data['sender'];
               final currentUser = loginUser.email;
               final messageBubble = MessageBubble(
-                Sender: messageSender,
-                TextMsg: message.data()['text'],
-                Photo: message.data()['photo'],
-                TimeStamp: message.data()['timestamp'],
+                messageID: message.id,
+                sender: messageSender,
+                text: data['text'],
+                photo: data['photo'],
+                timestamp: data['timestamp'],
                 isMe: currentUser == messageSender,
               );
               messageWidgets.add(messageBubble);
-              lastUpdate = messageBubble.TimeStamp;
+              lastUpdate = messageBubble.timestamp;
             }
             fireStore
                 .collection('history')

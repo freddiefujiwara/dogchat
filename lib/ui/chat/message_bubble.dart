@@ -9,16 +9,23 @@ import 'package:intl/intl.dart';
 
 class MessageBubble extends StatelessWidget {
   MessageBubble(
-      {this.Sender, this.TextMsg, this.Photo, this.TimeStamp, this.isMe});
-  final String TextMsg;
-  final String Sender;
-  final String Photo;
-  final Timestamp TimeStamp;
+      {this.messageID,
+      this.sender,
+      this.text,
+      this.photo,
+      this.timestamp,
+      this.isMe});
+  final String messageID;
+  final String text;
+  final String sender;
+  final String photo;
+  final Timestamp timestamp;
   bool isMe;
 
   @override
   Widget build(BuildContext context) {
-    String name = Sender.replaceAll(RegExp(r'@.*$'), '')
+    String name = sender
+        .replaceAll(RegExp(r'@.*$'), '')
         .replaceAll(RegExp(r'\.'), ' ')
         .split(" ")
         .map((orig) {
@@ -31,9 +38,9 @@ class MessageBubble extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
-              image: NetworkImage(this.Photo.isEmpty
+              image: NetworkImage(this.photo.isEmpty
                   ? 'https://freddiefujiwara.com/dogchat/favicon.png'
-                  : this.Photo),
+                  : this.photo),
               fit: BoxFit.fill),
         ),
       ),
@@ -43,50 +50,76 @@ class MessageBubble extends StatelessWidget {
       ),
     ];
     Image image;
-    if (RegExp(r'^data:image/[a-z]+;base64,').hasMatch(TextMsg)) {
+    if (RegExp(r'^data:image/[a-z]+;base64,').hasMatch(text)) {
       try {
-        image = Image.memory(base64.decode(TextMsg.split(',').last));
+        image = Image.memory(base64.decode(text.split(',').last));
       } catch (e) {
         image = null;
         print(e);
       }
     }
-    return Padding(
-      padding: EdgeInsets.all(5.0),
-      child: Column(
-        crossAxisAlignment:
-            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-        children: [
-          Row(
-              mainAxisAlignment:
-                  isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
-              children: isMe ? sendersInfo.reversed.toList() : sendersInfo),
-          image != null
-              ? image
-              : Material(
-                  borderRadius: isMe ? dBorderRadiusRight : dBorderRadiusLeft,
-                  elevation: 10,
-                  color: isMe ? Colors.blueAccent : Colors.greenAccent,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                    child: SelectableLinkify(
-                      onOpen: (link) async {
-                        if (await canLaunch(link.url)) {
-                          await launch(link.url);
-                        } else {
-                          throw 'Could not launch $link';
-                        }
-                      },
-                      text: TextMsg,
-                      style: TextStyle(color: Colors.black87, fontSize: 12),
-                      linkStyle: TextStyle(color: Colors.red, fontSize: 12),
-                    ),
+    return GestureDetector(
+        onLongPress: () {
+          showDialog(
+              context: context,
+              child: AlertDialog(
+                title: Text("この投稿を削除します"),
+                content: Text("削除すると戻せません"),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text("いいえ"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
                   ),
-                ),
-          Text(
-              '${TimeStamp == null ? "" : new DateFormat.yMd().add_jm().format(DateTime.parse(TimeStamp.toDate().toString()))}'),
-        ],
-      ),
-    );
+                  FlatButton(
+                    child: Text("はい"),
+                    onPressed: () {
+                      fireStore.collection('messages').doc(messageID).delete();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ));
+        },
+        child: Padding(
+          padding: EdgeInsets.all(5.0),
+          child: Column(
+            crossAxisAlignment:
+                isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            children: [
+              Row(
+                  mainAxisAlignment:
+                      isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+                  children: isMe ? sendersInfo.reversed.toList() : sendersInfo),
+              image != null
+                  ? image
+                  : Material(
+                      borderRadius:
+                          isMe ? dBorderRadiusRight : dBorderRadiusLeft,
+                      elevation: 10,
+                      color: isMe ? Colors.blueAccent : Colors.greenAccent,
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        child: SelectableLinkify(
+                          onOpen: (link) async {
+                            if (await canLaunch(link.url)) {
+                              await launch(link.url);
+                            } else {
+                              throw 'Could not launch $link';
+                            }
+                          },
+                          text: text,
+                          style: TextStyle(color: Colors.black87, fontSize: 12),
+                          linkStyle: TextStyle(color: Colors.red, fontSize: 12),
+                        ),
+                      ),
+                    ),
+              Text(
+                  '${timestamp == null ? "" : new DateFormat.yMd().add_jm().format(DateTime.parse(timestamp.toDate().toString()))}'),
+            ],
+          ),
+        ));
   }
 }
