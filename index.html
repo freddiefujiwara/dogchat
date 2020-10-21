@@ -66,8 +66,8 @@
       <script>
          if ('serviceWorker' in navigator) {
            window.addEventListener('load', function () {
-             navigator.serviceWorker.register('flutter_service_worker.js?v=3869390031');
-             navigator.serviceWorker.register("/dogchat/firebase-messaging-sw.js");
+             navigator.serviceWorker.register('flutter_service_worker.js?v=2987387295');
+             navigator.serviceWorker.register("firebase-messaging-sw.js", {scope: "/dogchat/"});
            });
          }
       </script>
