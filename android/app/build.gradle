@@ -26,10 +26,10 @@ def keystorePropertiesFile = rootProject.file('key.properties')
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 } else {
-    keystoreProperties.setProperty('storePassword', System.getenv('KEY_STORE_PASSWORD'));
-    keystoreProperties.setProperty('keyPassword', System.getenv('KEY_PASSWORD'));
-    keystoreProperties.setProperty('keyAlias', System.getenv('ALIAS'));
-    keystoreProperties.setProperty('storeFile', System.getenv('KEY_PATH'));
+    keystoreProperties.setProperty('storePassword', System.getenv('KEY_STORE_PASSWORD'))
+    keystoreProperties.setProperty('keyPassword', System.getenv('KEY_PASSWORD'))
+    keystoreProperties.setProperty('keyAlias', System.getenv('ALIAS'))
+    keystoreProperties.setProperty('storeFile', System.getenv('KEY_PATH'))
 }
 
 apply plugin: 'com.android.application'
@@ -89,4 +89,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.firebase:firebase-messaging:20.3.0'
 }
