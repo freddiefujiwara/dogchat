@@ -55,10 +55,6 @@
            console.log('Message received. ', payload);
            // ...
          });
-
-         self.addEventListener('notificationclick', function(event) {
-           console.log('notification received: ', event)
-         });
       </script>
       <!-- This script installs service_worker.js to provide PWA functionality to
          application. For more information, see:
@@ -66,8 +62,8 @@
       <script>
          if ('serviceWorker' in navigator) {
            window.addEventListener('load', function () {
-             //navigator.serviceWorker.register('flutter_service_worker.js?v=2140359175');
-             navigator.serviceWorker.register("/dogchat/firebase-messaging-sw.js", {scope: "/dogchat/"});
+             navigator.serviceWorker.register('flutter_service_worker.js?v=1998404637');
+             navigator.serviceWorker.register("firebase-messaging-sw.js");
            });
          }
       </script>
