@@ -1,3 +1,11 @@
+package com.freddiefujiwara.dogchat
+import android.util.Log
+import androidx.core.app.NotificationCompat
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
+import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
+
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onNewToken(token: String?) {
         // 端末＋アプリを一意に識別するためのトークンを取得
