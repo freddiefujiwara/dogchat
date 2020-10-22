@@ -33,7 +33,6 @@ class My extends StatelessWidget {
             children: <Widget>[
               RaisedButton(
                 child: Text('新しいroomを作る'),
-                color: Colors.blue,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),

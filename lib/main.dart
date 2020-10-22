@@ -38,6 +38,7 @@ Future<void> main() async {
     MaterialApp(
       title: '🐕 Dog Chat -ワンタイムチャット-',
       initialRoute: '/',
+      theme: dTheme,
       routes: <String, WidgetBuilder>{
         '/': (_) => new Home(),
         '/chat': (_) => new Chat(),

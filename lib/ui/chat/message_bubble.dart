@@ -46,7 +46,7 @@ class MessageBubble extends StatelessWidget {
       ),
       Text(
         "$name",
-        style: TextStyle(color: Colors.black87, fontSize: 12),
+        style: TextStyle(fontSize: 12),
       ),
     ];
     Image image;
@@ -73,7 +73,7 @@ class MessageBubble extends StatelessWidget {
               : Material(
                   borderRadius: isMe ? dBorderRadiusRight : dBorderRadiusLeft,
                   elevation: 10,
-                  color: isMe ? Colors.blueAccent : Colors.greenAccent,
+                  color: isMe ? Colors.grey : Colors.white,
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                     child: SelectableLinkify(
@@ -85,8 +85,11 @@ class MessageBubble extends StatelessWidget {
                         }
                       },
                       text: text,
-                      style: TextStyle(color: Colors.black87, fontSize: 12),
-                      linkStyle: TextStyle(color: Colors.red, fontSize: 12),
+                      style: TextStyle(
+                          color: isMe ? Colors.white : Colors.black,
+                          fontSize: 12),
+                      linkStyle:
+                          TextStyle(color: Colors.blueAccent, fontSize: 12),
                     ),
                   ),
                 ),

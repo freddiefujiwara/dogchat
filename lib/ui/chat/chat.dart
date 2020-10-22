@@ -80,7 +80,6 @@ class Chat extends StatelessWidget {
             icon: Icon(Icons.logout),
             onPressed: () async => await _signOut(context)),
         title: const Text('🐕 Chat room'),
-        backgroundColor: Colors.lightBlueAccent,
         centerTitle: true,
         actions: [
           FavoriteStream(),

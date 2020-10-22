@@ -5,6 +5,17 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:dogchat/model/dog_chat_user.dart';
 
+final ThemeData dTheme = ThemeData(
+  brightness: Brightness.dark,
+  primaryColor: Colors.black,
+  accentColor: Colors.grey,
+  fontFamily: 'Georgia',
+  textTheme: TextTheme(
+    headline1: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
+    headline6: TextStyle(fontSize: 18.0, fontStyle: FontStyle.italic),
+    bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+  ),
+);
 const dMessageTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   hintText: 'メッセージを入力',
@@ -13,7 +24,7 @@ const dMessageTextFieldDecoration = InputDecoration(
 
 const dMessageContainerDecoration = BoxDecoration(
   border: Border(
-    top: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+    top: BorderSide(color: Colors.black, width: 2.0),
   ),
 );
 
