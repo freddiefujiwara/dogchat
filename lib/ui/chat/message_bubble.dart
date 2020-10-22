@@ -58,71 +58,73 @@ class MessageBubble extends StatelessWidget {
         print(e);
       }
     }
-    return GestureDetector(
-        onLongPress: () {
-          if (!isMe) {
-            return;
-          }
-          showDialog(
-              context: context,
-              child: AlertDialog(
-                title: Text("この投稿を削除します"),
-                content: Text("削除すると戻せません"),
-                actions: <Widget>[
-                  FlatButton(
-                    child: Text("いいえ"),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  FlatButton(
-                    child: Text("はい"),
-                    onPressed: () {
-                      fireStore.collection('messages').doc(messageID).delete();
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              ));
-        },
-        child: Padding(
-          padding: EdgeInsets.all(5.0),
-          child: Column(
-            crossAxisAlignment:
-                isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-            children: [
-              Row(
-                  mainAxisAlignment:
-                      isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
-                  children: isMe ? sendersInfo.reversed.toList() : sendersInfo),
-              image != null
-                  ? image
-                  : Material(
-                      borderRadius:
-                          isMe ? dBorderRadiusRight : dBorderRadiusLeft,
-                      elevation: 10,
-                      color: isMe ? Colors.blueAccent : Colors.greenAccent,
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                        child: SelectableLinkify(
-                          onOpen: (link) async {
-                            if (await canLaunch(link.url)) {
-                              await launch(link.url);
-                            } else {
-                              throw 'Could not launch $link';
-                            }
-                          },
-                          text: text,
-                          style: TextStyle(color: Colors.black87, fontSize: 12),
-                          linkStyle: TextStyle(color: Colors.red, fontSize: 12),
-                        ),
-                      ),
+    return Padding(
+      padding: EdgeInsets.all(5.0),
+      child: Column(
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          Row(
+              mainAxisAlignment:
+                  isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+              children: isMe ? sendersInfo.reversed.toList() : sendersInfo),
+          image != null
+              ? image
+              : Material(
+                  borderRadius: isMe ? dBorderRadiusRight : dBorderRadiusLeft,
+                  elevation: 10,
+                  color: isMe ? Colors.blueAccent : Colors.greenAccent,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    child: SelectableLinkify(
+                      onOpen: (link) async {
+                        if (await canLaunch(link.url)) {
+                          await launch(link.url);
+                        } else {
+                          throw 'Could not launch $link';
+                        }
+                      },
+                      text: text,
+                      style: TextStyle(color: Colors.black87, fontSize: 12),
+                      linkStyle: TextStyle(color: Colors.red, fontSize: 12),
                     ),
-              Text(
-                  '${timestamp == null ? "" : new DateFormat.yMd().add_jm().format(DateTime.parse(timestamp.toDate().toString()))}'),
-            ],
-          ),
-        ));
+                  ),
+                ),
+          GestureDetector(
+            onLongPress: () {
+              if (!isMe) {
+                return;
+              }
+              showDialog(
+                  context: context,
+                  child: AlertDialog(
+                    title: Text("この投稿を削除します"),
+                    content: Text("削除すると戻せません"),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text("いいえ"),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      FlatButton(
+                        child: Text("はい"),
+                        onPressed: () {
+                          fireStore
+                              .collection('messages')
+                              .doc(messageID)
+                              .delete();
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  ));
+            },
+            child: Text(
+                '${timestamp == null ? "" : new DateFormat.yMd().add_jm().format(DateTime.parse(timestamp.toDate().toString()))}'),
+          )
+        ],
+      ),
+    );
   }
 }
