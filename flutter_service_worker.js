@@ -11,12 +11,12 @@ const RESOURCES = {
 "assets/AssetManifest.json": "2efbb41d7877d10aac9d091f58ccd7b9",
 "privacy_policy.html": "a8d6e465f8eecd764c403f6132c51a4f",
 "manifest.json": "d49f46c1da3c8eebdf5f262f490615b1",
-"main.dart.js": "901bca2eaf5abe6af67066ebc36c1f0d",
+"main.dart.js": "0aa42f1d2028f625de3576ba8fe4b493",
 "favicon_new.png": "a9c7c4af0167e6a9d39fb0e14bada9e7",
 "firebase-messaging-sw.js": "58e9d379441457e3e7eeb4f366c2d5f0",
 "version.json": "f0a10b6651eb7aeaa021febb44a26df6",
-"index.html": "a03296a395a381df2715ea19430144fa",
-"/": "a03296a395a381df2715ea19430144fa",
+"index.html": "ee7397dd3adecad33411e676fc1ea1dc",
+"/": "ee7397dd3adecad33411e676fc1ea1dc",
 "icons/Icon-192.png": "c1bdfb6efe5105bfbb6811d3c781fcd1",
 "icons/Icon-512.png": "f223144b88a89e8f093279b5c736357d"
 };
