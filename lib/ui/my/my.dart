@@ -26,25 +26,25 @@ class My extends StatelessWidget {
           title: const Text('🐕 マイページ'),
           centerTitle: true,
         ),
-        body: ConstrainedBox(
-          constraints: const BoxConstraints.expand(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              RaisedButton(
-                child: Text('新しいroomを作る'),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                FlatButton(
+                  child: Text('新しいroomを作る'),
+                  color: Colors.blueGrey,
+                  onPressed: () {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      Navigator.of(context).pushNamed('/chat',
+                          arguments: randomAlphaNumeric(32));
+                    });
+                  },
                 ),
-                onPressed: () {
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    Navigator.of(context)
-                        .pushNamed('/chat', arguments: randomAlphaNumeric(32));
-                  });
-                },
-              ),
-              FavoriteStream()
-            ],
+                FavoriteStream()
+              ],
+            ),
           ),
         ));
   }

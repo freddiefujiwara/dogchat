@@ -72,7 +72,6 @@ class MessageBubble extends StatelessWidget {
               ? image
               : Material(
                   borderRadius: isMe ? dBorderRadiusRight : dBorderRadiusLeft,
-                  elevation: 10,
                   color: isMe ? Colors.grey : Colors.white,
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),

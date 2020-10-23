@@ -30,6 +30,7 @@ class FavoriteStream extends StatelessWidget {
             for (var favorite in snapshot.data.docs) {
               favorites.add(FlatButton(
                 child: Text("${favorite.data()['id']}"),
+                color: Colors.grey,
                 onPressed: () =>
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                   Navigator.of(context)
@@ -37,16 +38,9 @@ class FavoriteStream extends StatelessWidget {
                 }),
               ));
             }
-            return Expanded(
-                child: ListView(
-              reverse: true,
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-              children: [
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: favorites),
-              ],
-            ));
+            return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: favorites);
           }
         });
   }

@@ -42,6 +42,7 @@ dependencies:
   random_string:
   shared_preferences:
   url_launcher:
+  grouped_list:
 
 
 dev_dependencies:
