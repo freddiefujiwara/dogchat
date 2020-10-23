@@ -41,7 +41,7 @@
          firebase.initializeApp(firebaseConfig);
          firebase.analytics();
 
-         const messaging = firebase.messaging();
+         /* const messaging = firebase.messaging();
          messaging.usePublicVapidKey('BEB9xCIf3JFG1K1IP-OhFsMvHqS7DOyFHQIo75Pf6el_66v553k8URFrMCr3soO0TLD-RI3q3a9QIUkhZwX0jyM');
          messaging.requestPermission();
          messaging.getToken().then((currentToken) => {
@@ -54,7 +54,7 @@
          messaging.onMessage((payload) => {
            console.log('Message received. ', payload);
            // ...
-         });
+         });*/
       </script>
       <!-- This script installs service_worker.js to provide PWA functionality to
          application. For more information, see:
@@ -63,7 +63,7 @@
          if ('serviceWorker' in navigator) {
            window.addEventListener('load', function () {
              navigator.serviceWorker.register('flutter_service_worker.js');
-             navigator.serviceWorker.register("firebase-messaging-sw.js");
+             //  navigator.serviceWorker.register("firebase-messaging-sw.js");
            });
          }
       </script>
