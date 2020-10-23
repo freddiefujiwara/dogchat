@@ -15,8 +15,8 @@ const RESOURCES = {
 "favicon_new.png": "a9c7c4af0167e6a9d39fb0e14bada9e7",
 "firebase-messaging-sw.js": "58e9d379441457e3e7eeb4f366c2d5f0",
 "version.json": "f0a10b6651eb7aeaa021febb44a26df6",
-"index.html": "508dc856ca311b14225e244fb287c245",
-"/": "508dc856ca311b14225e244fb287c245",
+"index.html": "64a85f85335ef09ed527a12f38149299",
+"/": "64a85f85335ef09ed527a12f38149299",
 "icons/Icon-192.png": "c1bdfb6efe5105bfbb6811d3c781fcd1",
 "icons/Icon-512.png": "f223144b88a89e8f093279b5c736357d"
 };
